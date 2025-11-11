@@ -119,7 +119,7 @@
             right: 15px;
         }
 
-        /* --- 3. 그림 정보 (수정됨) --- */
+        /* --- 3. 그림 정보 (Đã sửa) --- */
         .painting-info {
             text-align: center;
             font-size: 1.1em;
@@ -130,14 +130,13 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            /* === 수정 1: Flexbox로 세로 중앙 정렬 === */
+            /* Căn giữa dọc */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 180px; /* 높이 증가 및 box-sizing 추가 */
+            min-height: 180px; 
             box-sizing: border-box;
         }
-        /* === 수정 1: h1의 기본 마진 제거 === */
         .painting-info h1 {
             margin-top: 0;
             margin-bottom: 15px; 
@@ -165,7 +164,7 @@
             box-sizing: border-box; 
         }
         
-        /* === 수정 2: 3단 그리드의 h2 제목들 가운데 정렬 === */
+        /* Căn giữa tiêu đề 3 cột */
         .data-column h2 {
             text-align: center;
         }
@@ -226,6 +225,65 @@
             color: #555;
             margin-top: 10px; 
         }
+
+        /* === YÊU CẦU 2: Mục Phân tích Thời kỳ (MỚI) === */
+        .period-analysis-section {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .period-content {
+            display: flex;
+            flex-wrap: wrap; /* Cho responsive */
+            gap: 30px; /* Tăng khoảng cách */
+        }
+        .period-locations {
+            flex-basis: 30%;
+            min-width: 250px;
+            flex-grow: 1;
+            background-color: #fdfdfd;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #f9d700; /* Dùng màu vàng theme */
+        }
+        .period-locations h3 {
+            margin-top: 0;
+            color: #0a2e6c;
+            border-bottom: 2px solid #f9d700;
+            padding-bottom: 5px;
+        }
+        .period-locations .location-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 15px 0 0 0;
+        }
+        .period-locations .location-detail {
+            font-size: 1em;
+            color: #555;
+            font-style: italic;
+        }
+
+        .period-details {
+            flex-basis: 65%;
+            flex-grow: 2;
+        }
+        .period-details h3 {
+            margin-top: 0;
+            color: #0a2e6c;
+            border-bottom: 2px solid #f9d700;
+            padding-bottom: 5px;
+        }
+        .period-details p {
+            margin: 10px 0;
+        }
+        .period-details strong {
+            color: #0a2e6c;
+            font-weight: 600;
+        }
+        /* ============================================== */
+
 
         /* --- 색상 상징 섹션 --- */
         .color-symbolism-section {
@@ -360,13 +418,15 @@
             <section class="data-grid">
 
                 <div class="data-column chart-wrapper">
-                    <h2>색상 분포</h2> <div class="chart-container">
+                    <h2>색상 분포</h2> 
+                    <div class="chart-container">
                         <canvas id="colorDonutChart"></canvas>
                     </div>
                 </div>
 
                 <div class="data-column palette-container">
-                    <h2>주요 팔레트</h2> <div class="palette-grid">
+                    <h2>주요 팔레트</h2> 
+                    <div class="palette-grid">
                         <div class="color-swatch">
                             <div class="swatch-box" style="background-color: #0a2e6c;"></div>
                             <code>#0a2e6c</code>
@@ -395,7 +455,8 @@
                 </div>
 
                 <div class="data-column emotion-gauge-container">
-                    <h2>작업 심리 상태</h2> <div class="gauge-chart-wrapper">
+                    <h2>작업 당시 기분</h2> 
+                    <div class="gauge-chart-wrapper">
                         <canvas id="emotionGaugeChart"></canvas>
                         <div class="gauge-score">2/10</div>
                     </div>
@@ -405,6 +466,24 @@
                 </div>
             </section>
 
+            <section class="period-analysis-section">
+                <div class="period-content">
+                    <div class="period-locations">
+                        <h3>주요 활동지 (남프랑스)</h3>
+                        <p class="location-name">아를 (Arles)</p>
+                        <span class="location-detail">(희망, '노란 집' 시기)</span>
+                        <p class="location-name">생레미드프로방스 (Saint-Rémy-de-Provence)</p>
+                        <span class="location-detail">(요양원, '별이 빛나는 밤' 시기)</span>
+                    </div>
+                    <div class="period-details">
+                        <h3>남프랑스 시기 특징 (1888-1890)</h3>
+                        <p><strong>붓놀림 (특징):</strong> 붓놀림이 '자체적인 생명'을 얻었습니다. 아를에서는 자신감 있고 리듬감이 있었고, 생레미에서는 우주적인 에너지 흐름처럼 소용돌이쳤습니다.</p>
+                        <p><strong>색채 (감정적 대비):</strong> 보색 이론(예: '밤의 카페'의 빨강-녹색)을 숙달하여 '인류의 무서운 열정'과 같은 강렬한 감정적 갈등을 창출했습니다.</p>
+                        <p><strong>크롬 노랑 (주요색):</strong> 이 시기를 정의하는 색으로, '희망'과 '광기'라는 양극단의 의미를 동시에 지녔습니다 (예: 해바라기).</p>
+                        <p><strong>파랑 (코발트/울트라마린):</strong> 노란색의 주된 반대색으로, '무한함', '영성', 그리고 '깊은 멜랑콜리'를 상징했습니다 (예: 별이 빛나는 밤).</p>
+                    </div>
+                </div>
+            </section>
             <section class="color-symbolism-section">
                 <article class="analysis-section color-meaning">
                      <h2>색의 상징</h2> 
