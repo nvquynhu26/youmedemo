@@ -174,22 +174,27 @@
             height: 350px; 
         }
 
-        /* 2열: 색상 팔레트 */
+        /* 2열: 색상 팔레트 (ĐÃ SỬA) */
         .palette-container {
             text-align: center;
         }
         .palette-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); 
+            /* === YÊU CẦU 2.1: Sửa 3 cột thành 2 cột === */
+            grid-template-columns: repeat(2, 1fr); 
             gap: 15px;
             margin-top: 20px;
+            /* Thêm padding để 2 cột cân đối hơn */
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         .color-swatch {
             text-align: center;
         }
         .swatch-box {
             width: 100%;
-            height: 80px;
+            /* === YÊU CẦU 2.2: Sửa chiều cao từ 80px -> 54px === */
+            height: 54px; 
             border: 1px solid #ddd;
             border-radius: 4px;
         }
@@ -200,6 +205,7 @@
             padding: 2px 4px;
             border-radius: 3px;
         }
+        /* ============================================== */
 
         /* 3열: 감정 게이지 */
         .emotion-gauge-container {
@@ -225,7 +231,7 @@
             margin-top: 10px; 
         }
 
-        /* --- Mục Phân tích Thời kỳ (ĐÃ SỬA) --- */
+        /* --- Mục Phân tích Thời kỳ --- */
         .period-analysis-section {
             margin-top: 30px;
             background-color: #fff;
@@ -239,9 +245,9 @@
             gap: 30px; 
         }
         
-        /* === YÊU CẦU 1: Thanh tiến trình (MỚI) === */
+        /* Thanh tiến trình */
         .period-locations {
-            flex-basis: 35%; /* Tăng không gian 1 chút */
+            flex-basis: 35%;
             min-width: 300px;
             flex-grow: 1;
             background-color: #fdfdfd;
@@ -267,7 +273,7 @@
             height: 30px;
             border-radius: 5px;
             overflow: hidden;
-            background-color: #e0e0e0; /* Màu nền cho phần 'khác' */
+            background-color: #e0e0e0; 
         }
         .bar-segment {
             height: 100%;
@@ -280,12 +286,11 @@
         }
         .bar-segment.arles {
             background-color: #f9d700;
-            color: #333; /* Chữ tối trên nền vàng */
+            color: #333; 
         }
         .bar-segment.saint-remy {
             background-color: #0a2e6c;
         }
-        /* Phần 'other' không cần div riêng vì nó là nền của lifetime-bar */
         
         .bar-legend {
             margin-top: 20px;
@@ -310,10 +315,9 @@
         .legend-swatch.saint-remy { background-color: #0a2e6c; }
         .legend-swatch.other { background-color: #e0e0e0; }
         
-        /* ============================================== */
-
+        /* Chi tiết thời kỳ */
         .period-details {
-            flex-basis: 60%; /* Tăng không gian */
+            flex-basis: 60%; 
             flex-grow: 2;
         }
         .period-details h3 {
@@ -326,11 +330,10 @@
             margin: 10px 0;
         }
         .period-details strong {
-            /* color: #0a2e6c; */ /* Bỏ đi để dùng strong trong symbol-title */
             font-weight: 600;
         }
 
-        /* --- Kiểu chung cho ô màu (YÊU CẦU 3) --- */
+        /* --- Kiểu chung cho ô màu --- */
         .symbol-title {
             display: flex;
             align-items: center;
@@ -344,7 +347,6 @@
             margin-right: 10px;
             flex-shrink: 0; 
         }
-        /* Áp dụng cho cả hai mục */
         .color-meaning strong,
         .period-details strong {
             display: inline; 
@@ -352,11 +354,10 @@
         }
         .color-meaning p,
         .period-details .symbol-description { 
-            margin: 0 0 15px 30px; /* Thêm margin-bottom và căn lề trái */
+            margin: 0 0 15px 30px; 
             padding: 0;
             color: #555;
         }
-        /* ============================================== */
 
 
         /* --- 색상 상징 섹션 --- */
@@ -414,7 +415,6 @@
                 height: 40px;
                 font-size: 1.5em;
             }
-            /* Chuyển 2 cột phân tích thời kỳ thành 1 cột */
             .period-content {
                 flex-direction: column;
             }
@@ -532,17 +532,17 @@
                         <div class="lifetime-bar">
                             <div class="bar-segment arles" style="width: 8.76%;" title="아를 (Arles): 184점"></div>
                             <div class="bar-segment saint-remy" style="width: 6.81%;" title="생레미 (Saint-Rémy): 143점"></div>
-                            </div>
+                        </div>
                         
                         <div class="bar-legend">
                             <div class="legend-item">
-                                <span class="legend-swatch arles"></span> 아를 (Arles): 184작품 (~8.8%)
+                                <span class="legend-swatch arles"></span> 아를 (Arles): 184점 (~8.8%)
                             </div>
                             <div class="legend-item">
-                                <span class="legend-swatch saint-remy"></span> 생레미 (Saint-Rémy): 143작품 (~6.8%)
+                                <span class="legend-swatch saint-remy"></span> 생레미 (Saint-Rémy): 143점 (~6.8%)
                             </div>
                              <div class="legend-item">
-                                <span class="legend-swatch other"></span> 기타 시기: 1773작품 (~84.4%)
+                                <span class="legend-swatch other"></span> 기타 시기: 1773점 (~84.4%)
                             </div>
                         </div>
                     </div>
@@ -607,7 +607,8 @@
                                 <span class="symbol-swatch" style="background-color: #b05f2a;"></span>
                                 <strong>갈색 / 주황색</strong> 
                             </div>
-                            <p>마을 지붕의 색. 이것은 대지, 인류의 색입니다. 따뜻함, 안전, 평화를 상징하며, 위의 우주적 드라마와 극명한 대조를 이룹니다.</p> t<li>
+                            <p>마을 지붕의 색. 이것은 대지, 인류의 색입니다. 따뜻함, 안전, 평화를 상징하며, 위의 우주적 드라마와 극명한 대조를 이룹니다.</p> 
+                        </li>
                     </ul>
                 </article>
             </section>
@@ -622,7 +623,6 @@
                     <p>이 기법이 극도로 사용되었습니다. 물감을 튜브에서 바로 짠 것처럼 두껍게 칠했으며, 특히 별, 달, 소용돌이에 적용되어 실제 빛을 "잡아내는" 3D 질감을 줍니다.</p> 
                     
                     <h3>자의적/표현적 색채</h3> 
-                    <img src="https://i.imgur.com/8pP8eJg.png" alt="Biểu đồ phân tích tâm lý của Van Gogh" style="width: 100%; height: auto; margin-bottom: 15px;">
                     <p>그는 본 것을 그린 것이 아니라 느낀 것을 그렸습니다. 하늘은 실제로 울트라마린이 아니며, 별은 카드뮴 옐로우로 "타오르지" 않습니다. 이것은 감정의 색입니다.</p> 
                     
                     <h3>강한 윤곽선</h3> 
