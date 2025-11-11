@@ -1,0 +1,454 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww34360\viewh18900\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Art Analysis: The Starry Night (Vintage Style)</title>\
+    \
+    <link rel="preconnect" href="https://fonts.googleapis.com">\
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">\
+    \
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\
+    \
+    <style>\
+        /* --- General Styling (Vintage Tone) --- */\
+        body \{\
+            /* Font Gothic C\uc0\u7893  \u273 i\u7875 n (d\'f9ng Cormorant Garamond v\'ec d\u7877  \u273 \u7885 c h\u417 n blackletter) */\
+            font-family: 'Cormorant Garamond', Georgia, serif; \
+            margin: 0;\
+            padding: 0;\
+            /* Background: T\'f4ng m\'e0u gi\uc0\u7845 y c\u361  (Sepia/Off-White) */\
+            background-color: #fbf0d9; \
+            /* Color: M\'e0u m\uc0\u7921 c/N\'e2u \u273 en */\
+            color: #4b3832; \
+            line-height: 1.8; /* T\uc0\u259 ng line-height cho font serif */\
+            font-size: 1.1em; \
+        \}\
+        .container \{\
+            max-width: 1200px;\
+            margin: 0 auto;\
+            padding: 20px;\
+        \}\
+\
+        /* --- 1. Header & Search Bar --- */\
+        header \{\
+            /* N\uc0\u7873 n xanh \u273 \u7853 m c\u7893  \u273 i\u7875 n */\
+            background-color: #0d1e37; \
+            padding: 20px;\
+            color: #fff;\
+            margin-bottom: 20px;\
+        \}\
+        .search-bar \{\
+            display: flex;\
+            justify-content: space-around;\
+            align-items: center;\
+            flex-wrap: wrap; \
+        \}\
+        .search-bar .search-group \{\
+            display: flex;\
+            flex-direction: column;\
+            margin: 5px 10px;\
+        \}\
+        .search-bar label \{\
+            font-size: 0.9em;\
+            margin-bottom: 5px;\
+            /* M\'e0u v\'e0ng \uc0\u273 \u7853 m c\u7893  \u273 i\u7875 n */\
+            color: #ccac00; \
+        \}\
+        .search-bar input,\
+        .search-bar select \{\
+            padding: 8px;\
+            border: none;\
+            border-radius: 2px;\
+            font-size: 1em;\
+            /* \uc0\u272 \u7843 m b\u7843 o input v\u7851 n d\u7877  \u273 \u7885 c */\
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; \
+        \}\
+\
+        /* --- 2. Painting Display --- */\
+        .painting-display \{\
+            text-align: center;\
+            background-color: #fffdf7; /* N\uc0\u7873 n tr\u7855 ng s\u7841 ch h\u417 n */\
+            padding: 20px;\
+            border-radius: 8px;\
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Shadow \uc0\u273 \u7853 m h\u417 n */\
+        \}\
+        .painting-display img \{\
+            /* Th\'eam hi\uc0\u7879 u \u7913 ng sepia nh\u7865  \u273 \u7875  l\'e0m \u7843 nh h\'f2a h\u7907 p v\u7899 i tone m\'e0u trang web */\
+            filter: sepia(0.15) brightness(1.05); \
+            max-width: 100%;\
+            height: auto;\
+            border: 8px solid #fffdf7;\
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);\
+        \}\
+        .painting-info \{\
+            font-size: 1.1em;\
+            font-style: italic;\
+            color: #6a5a54; \
+            margin-top: 15px;\
+        \}\
+\
+        /* --- 3. Color Analysis (3-Column Layout) --- */\
+        .color-analysis \{\
+            display: flex;\
+            justify-content: space-between;\
+            margin-top: 30px;\
+            gap: 20px; \
+            flex-wrap: wrap; \
+        \}\
+        .color-column \{\
+            flex-grow: 1;\
+            min-width: 250px; \
+            background-color: #fffdf7; /* N\uc0\u7873 n c\u7897 t tr\u7855 ng */\
+            padding: 20px;\
+            border-radius: 8px;\
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);\
+        \}\
+\
+        /* C\uc0\u7897 t B\u7843 ng m\'e0u (thu nh\u7887 ) */\
+        .palette-container \{\
+            flex-basis: 25%; \
+            min-width: 200px;\
+            text-align: center;\
+        \}\
+        .palette-grid \{\
+            display: grid;\
+            grid-template-columns: repeat(2, 1fr); \
+            gap: 10px; \
+            margin-top: 15px;\
+        \}\
+        .swatch-box \{\
+            width: 100%;\
+            height: 50px; \
+            border: 1px solid #c9c0ac; /* M\'e0u vi\uc0\u7873 n c\u7893  \u273 i\u7875 n h\u417 n */\
+            border-radius: 2px;\
+        \}\
+        .color-swatch code \{\
+            font-size: 0.85em; \
+            color: #555;\
+            background-color: #eaeaea; \
+            padding: 1px 3px;\
+            border-radius: 2px;\
+            font-family: monospace; /* Gi\uc0\u7919  code blocks d\u7877  \u273 \u7885 c */\
+        \}\
+\
+        /* C\uc0\u7897 t \'dd ngh\u297 a m\'e0u s\u7855 c (c\'f3 thanh cu\u7897 n c\u7889  \u273 \u7883 nh) */\
+        .color-meaning \{\
+            flex-basis: 35%; \
+            min-width: 280px;\
+        \}\
+        .color-meaning ul \{\
+            list-style: none;\
+            padding-left: 0;\
+            max-height: 250px; /* Chi\uc0\u7873 u cao c\u7889  \u273 \u7883 nh */\
+            overflow-y: auto; /* Thanh cu\uc0\u7897 n */\
+            padding-right: 15px; \
+        \}\
+        .color-meaning li \{\
+            margin-bottom: 15px;\
+        \}\
+        .color-meaning strong \{\
+            display: block; \
+            font-size: 1.1em;\
+            font-weight: 600; /* In \uc0\u273 \u7853 m ti\'eau \u273 \u7873  m\'e0u */\
+        \}\
+\
+        /* --- 4. In-depth Analysis --- */\
+        .in-depth-analysis \{\
+            margin-top: 30px;\
+            background-color: #fffdf7;\
+            padding: 30px;\
+            border-radius: 8px;\
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);\
+        \}\
+        \
+        /* Headings */\
+        h1 \{\
+            font-size: 2.8em;\
+            font-weight: 600;\
+        \}\
+        h2 \{\
+            font-size: 2em;\
+            color: #0a2e6c; \
+            border-bottom: 2px solid #ccac00; /* Vi\uc0\u7873 n v\'e0ng c\u7893  \u273 i\u7875 n */\
+            padding-bottom: 5px;\
+            margin-top: 0;\
+            font-weight: 700;\
+        \}\
+        h3 \{\
+            font-size: 1.5em;\
+            color: #2c231f;\
+            font-weight: 600;\
+        \}\
+        \
+        /* Responsive Design */\
+        @media (max-width: 992px) \{\
+            .color-column \{\
+                min-width: 250px;\
+            \}\
+            .palette-container \{\
+                flex-basis: 30%; \
+            \}\
+            .chart-wrapper, .color-meaning \{\
+                flex-basis: 35%;\
+            \}\
+        \}\
+        \
+        @media (max-width: 768px) \{\
+            .color-analysis \{\
+                flex-direction: column; \
+            \}\
+            .color-column \{\
+                min-width: 100%; \
+            \}\
+            .search-bar \{\
+                flex-direction: column;\
+                align-items: stretch;\
+            \}\
+            .search-bar .search-group \{\
+                width: 100%;\
+                margin: 5px 0;\
+            \}\
+            /* G\uc0\u7905  b\u7887  c\u7889  \u273 \u7883 nh chi\u7873 u cao v\'e0 thanh cu\u7897 n khi \u7903  ch\u7871  \u273 \u7897  xem di \u273 \u7897 ng */\
+            .color-meaning ul \{\
+                max-height: none;\
+                overflow-y: visible;\
+                padding-right: 0;\
+            \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+\
+    <div class="container">\
+\
+        <header>\
+            <nav class="search-bar">\
+                <div class="search-group">\
+                    <label for="search-name">Search by Name</label>\
+                    <input type="text" id="search-name" placeholder="e.g., The Starry Night">\
+                </div>\
+                <div class="search-group">\
+                    <label for="search-color">Search by Color</label>\
+                    <select id="search-color">\
+                        <option value="">--Select a color--</option>\
+                        <option value="blue">Blue</option>\
+                        <option value="yellow">Yellow</option>\
+                        <option value="black">Black</option>\
+                    </select>\
+                </div>\
+                <div class="search-group">\
+                    <label for="search-period">Search by Period</label>\
+                    <select id="search-period">\
+                        <option value="">--Select a period--</option>\
+                        <option value="netherlands">Netherlands</option>\
+                        <option value="paris">Paris</option>\
+                        <option value="south_france">South of France</option>\
+                    </select>\
+                </div>\
+            </nav>\
+        </header>\
+\
+        <main>\
+            <section class="painting-display">\
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" \
+                    alt="The Starry Night by Vincent van Gogh">\
+                \
+                <h1>The Starry Night</h1>\
+                \
+                <p class="painting-info">\
+                    Vincent van Gogh, 1889 (South of France) <br>\
+                    73.7 cm \'d7 92.1 cm | Oil on canvas <br>\
+                    Currently at: Museum of Modern Art (MoMA), New York City, USA\
+                </p>\
+            </section>\
+\
+            <section class="color-analysis">\
+\
+                <div class="color-column chart-wrapper">\
+                    <h2>Color Distribution</h2>\
+                    <div class="chart-container">\
+                        <canvas id="colorDonutChart"></canvas>\
+                    </div>\
+                </div>\
+\
+                <div class="color-column palette-container">\
+                    <h2>Primary Palette</h2>\
+                    <div class="palette-grid">\
+                        <div class="color-swatch">\
+                            <div class="swatch-box" style="background-color: #0a2e6c;"></div>\
+                            <code>#0a2e6c</code>\
+                        </div>\
+                        <div class="color-swatch">\
+                            <div class="swatch-box" style="background-color: #0c1a2d;"></div>\
+                            <code>#0c1a2d</code>\
+                        </div>\
+                        <div class="color-swatch">\
+                            <div class="swatch-box" style="background-color: #f9d700;"></div>\
+                            <code>#f9d700</code>\
+                        </div>\
+                        <div class="color-swatch">\
+                            <div class="swatch-box" style="background-color: #ffffff; border: 1px solid #c9c0ac;"></div>\
+                            <code>#ffffff</code>\
+                        </div>\
+                        <div class="color-swatch">\
+                            <div class="swatch-box" style="background-color: #b05f2a;"></div>\
+                            <code>#b05f2a</code>\
+                        </div>\
+                        <div class="color-swatch">\
+                            <div class="swatch-box" style="background-color: #555555;"></div>\
+                            <code>#555555</code>\
+                        </div>\
+                    </div>\
+                </div>\
+\
+                <div class="color-column color-meaning">\
+                    <h2>Color Symbolism</h2>\
+                    <ul>\
+                        <li>\
+                            <strong>Blue (Ultramarine/Prussian)</strong>\
+                            Color of the sky, the cosmos, infinity, and spirituality. But it's also a "cold" color, symbolizing his melancholy and isolation in the asylum.\
+                        </li>\
+                        <li>\
+                            <strong>Yellow (Cadmium/Chrome)</strong>\
+                            Color of the stars and moon. It's the antidote to Blue. It is life, hope, divine energy, and inner "fire." The stars aren't just stars; they are "explosions" of hope.\
+                        </li>\
+                        <li>\
+                            <strong>Black / Darkest Blue</strong>\
+                            Color of the cypress tree and outlines. Symbolizes death, grief, and despair. It's the "darkness" of the earth reaching up to the sky.\
+                        </li>\
+                        <li>\
+                            <strong>White</strong>\
+                            Used (often mixed with Yellow) to create the brightest highlights. Symbolizes pure light, the core of energy, making the stars "burn."\
+                        </li>\
+                        <li>\
+                            <strong>Brown / Orange</strong>\
+                            Color of the village roofs. This is the color of the earth, of humanity. It symbolizes warmth, safety, and peace\'97a stark contrast to the cosmic drama above.\
+                        </li>\
+                        <li>\
+                            <strong>Green / Teal</strong>\
+                            Used subtly in the light halos around the stars, creating a complimentary contrast against the dominant blue, hinting at life and subtle movement.\
+                        </li>\
+                    </ul>\
+                </div>\
+            </section>\
+\
+            <section class="in-depth-analysis">\
+                <article class="analysis-section">\
+                    <h2>Painting Technique</h2>\
+                    <h3>Swirling Brushwork</h3>\
+                    <p>This is the defining technique of his Saint-R\'e9my period. The entire sky, the hills, and even the cypress tree are painted with powerful, swirling, coiling brushstrokes, creating an "energy field" in motion.</p>\
+                    \
+                    <h3>Impasto</h3>\
+                    <p>This technique is pushed to the extreme. Paint is applied thickly, perhaps straight from the tube, especially on the stars, moon, and swirls, giving them a 3D texture that "catches" real light.</p>\
+                    \
+                    <h3>Arbitrary/Expressive Color</h3>\
+                    <p>He didn't paint what he saw, but what he felt. The sky isn't factually Ultramarine, nor do stars "burn" Cadmium Yellow. This is the color of emotion.</p>\
+                    \
+                    <h3>Strong Outlines</h3>\
+                    <p>The cypress and village houses are outlined in Dark Blue/Black, a legacy of Japonisme, but now used to create drama and separate the forms.</p>\
+                </article>\
+                \
+                <article class="analysis-section">\
+                    <h2>Meaning of the Painting</h2>\
+                    <h3>View from the Asylum</h3>\
+                    <p>The painting was based on the view from his asylum room window at Saint-Paul-de-Mausole, looking east before sunrise, though painted from memory.</p>\
+                    \
+                    <h3>The "Dialogue" of Three Elements</h3>\
+                    <p>The painting is a psychological drama between three parts:</p>\
+                    <ul>\
+                        <li><strong>The Sky (The Cosmos/Supernatural):</strong> The largest, most chaotic part. It's a cosmic dance, a "vortex" of emotion and spiritual energy. The stars (especially Venus, the brightest) and the moon (an unrealistic combination of crescent and sun) are "bursts" of hope or divine power.</li>\
+                        <li><strong>The Village (The Serene/Human):</strong> Nestled in the valley. This part is from memory (the church spire is Dutch, from his homeland, not French). It represents peace, community, and human warmth (lit windows) from which Van Gogh was separated and yearned for.</li>\
+                        <li><strong>The Cypress Tree (The Inner Self/Death):</strong> In the foreground, rising like a black flame. Cypress trees in Provence were often associated with cemeteries and death. For Van Gogh, it symbolizes his own inner turmoil and suffering, a dark "bridge" of longing, reaching from Earth (life) to the Sky (eternity/death).</li>\
+                    </ul>\
+                </article>\
+\
+                <article class="analysis-section">\
+                    <h2>Intention when Painting</h2>\
+                    <h3>Technical Intention (Swirling Brushwork)</h3>\
+                    <p>The intent was to paint "energy," not objects. He wanted to show the "hidden life," the "vibration" of the cosmos. The world is not static, but alive and roiling.</p>\
+                    \
+                    <h3>Color Intention (Arbitrary)</h3>\
+                    <p>The intent was "expression." He used Blue because he felt infinity and melancholy. He used Yellow because he felt hope and divine energy.</p>\
+                    \
+                    <h3>Contrast</h3>\
+                    <p>The key intention was dramatic contrast:</p>\
+                    <ul>\
+                        <li><strong>Sky (Chaotic, Supernatural) vs. Village (Calm, Human):</strong> The world of God/The Cosmos versus the world of sleeping humanity.</li>\
+                        <li><strong>Cypress (Dark,Struggling) vs. Sky (Bright, Eternal):</strong> His earthly suffering yearning for the divine light.</li>\
+                    </ul>\
+                </article>\
+\
+                <article class="analysis-section">\
+                    <h2>Van Gogh's Psychology</h2>\
+                    <p>Van Gogh was in an intense and chaotic emotional state. He had just suffered a severe mental breakdown. He was isolated. This painting was not made *in* a fit of madness, but rather as an attempt to "channel" his turbulent emotions, fears, and spiritual yearning *into* art.</p>\
+                    <p>Despite the chaos, many see this as a painting of consolation. Van Gogh was searching for redemption, not in the church (which he painted small), but in the grand, overwhelming power of nature (the sky).</p>\
+                </article>\
+            </section>\
+        </main>\
+    </div>\
+\
+    <script>\
+        document.addEventListener('DOMContentLoaded', function() \{\
+            // D\uc0\u7919  li\u7879 u cho bi\u7875 u \u273 \u7891 \
+            const colorData = \{\
+                labels: [\
+                    'Blue (~40%)',\
+                    'Black / Dark Blue (~20%)',\
+                    'Yellow (~15%)',\
+                    'White (~15%)',\
+                    'Brown / Orange (~10%)'\
+                ],\
+                datasets: [\{\
+                    label: 'Color Distribution',\
+                    data: [40, 20, 15, 15, 10], \
+                    backgroundColor: [\
+                        '#0a2e6c', // Blue\
+                        '#0c1a2d', // Dark Blue\
+                        '#f9d700', // Yellow\
+                        '#f0f0f0', // White\
+                        '#b05f2a'  // Brown / Orange\
+                    ],\
+                    borderColor: '#fffdf7', /* M\'e0u vi\uc0\u7873 n bi\u7875 u \u273 \u7891  kh\u7899 p v\u7899 i n\u7873 n m\u7899 i */\
+                    borderWidth: 2\
+                \}]\
+            \};\
+\
+            const ctx = document.getElementById('colorDonutChart');\
+\
+            if (ctx) \{\
+                const colorDonutChart = new Chart(ctx.getContext('2d'), \{\
+                    type: 'doughnut', \
+                    data: colorData,\
+                    options: \{\
+                        responsive: true, \
+                        maintainAspectRatio: false, \
+                        plugins: \{\
+                            legend: \{\
+                                position: 'bottom', \
+                                labels: \{\
+                                    boxWidth: 20,\
+                                    padding: 15,\
+                                    color: '#4b3832', /* M\'e0u ch\uc0\u7919  ch\'fa gi\u7843 i kh\u7899 p v\u7899 i m\'e0u ch\u7919  t\u7893 ng th\u7875  */\
+                                    font: \{\
+                                        family: 'Cormorant Garamond'\
+                                    \}\
+                                \}\
+                            \}\
+                        \}\
+                    \}\
+                \});\
+            \}\
+        \});\
+    </script>\
+\
+</body>\
+</html>}
