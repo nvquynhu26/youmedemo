@@ -8,10 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
-        /* --- Thêm font Pretendard --- */
+        /* --- Pretendard 폰트 추가 --- */
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
-        /* --- General Styling --- */
+        /* --- 기본 스타일 --- */
         body {
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
@@ -44,7 +44,7 @@
             font-weight: 600;
         }
 
-        /* --- 1. Header & Search Bar --- */
+        /* --- 1. 헤더 & 검색 바 --- */
         header {
             background-color: #0c1a2d; 
             padding: 20px;
@@ -77,7 +77,7 @@
             font-family: 'Pretendard', sans-serif; 
         }
 
-        /* --- 2. Painting Gallery --- */
+        /* --- 2. 그림 갤러리 --- */
         .painting-gallery {
             display: flex;
             align-items: center;
@@ -119,7 +119,7 @@
             right: 15px;
         }
 
-        /* --- 3. Painting Info --- */
+        /* --- 3. 그림 정보 (수정됨) --- */
         .painting-info {
             text-align: center;
             font-size: 1.1em;
@@ -130,19 +130,23 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            /* === 수정 1: Flexbox로 세로 중앙 정렬 === */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 150px; 
+            min-height: 180px; /* 높이 증가 및 box-sizing 추가 */
+            box-sizing: border-box;
         }
+        /* === 수정 1: h1의 기본 마진 제거 === */
         .painting-info h1 {
+            margin-top: 0;
             margin-bottom: 15px; 
         }
         .painting-info p {
             margin: 0;
         }
 
-        /* --- 4. Data Analysis Grid (LƯỚI 3 CỘT) --- */
+        /* --- 4. 데이터 분석 그리드 (3단) --- */
         .data-grid {
             display: flex;
             justify-content: space-between;
@@ -161,13 +165,18 @@
             box-sizing: border-box; 
         }
         
-        /* Cột 1: Biểu đồ Donut */
+        /* === 수정 2: 3단 그리드의 h2 제목들 가운데 정렬 === */
+        .data-column h2 {
+            text-align: center;
+        }
+        
+        /* 1열: 도넛 차트 */
         .chart-container {
             position: relative;
             height: 350px; 
         }
 
-        /* Cột 2: Bảng màu */
+        /* 2열: 색상 팔레트 */
         .palette-container {
             text-align: center;
         }
@@ -194,7 +203,7 @@
             border-radius: 3px;
         }
 
-        /* Cột 3: Đồng hồ đo cảm xúc */
+        /* 3열: 감정 게이지 */
         .emotion-gauge-container {
             position: relative; 
             text-align: center;
@@ -218,7 +227,7 @@
             margin-top: 10px; 
         }
 
-        /* --- Mục Biểu tượng màu --- */
+        /* --- 색상 상징 섹션 --- */
         .color-symbolism-section {
             margin-top: 30px;
             background-color: #fff;
@@ -256,7 +265,7 @@
             color: #555;
         }
 
-        /* --- 5. In-depth Analysis (Phần còn lại) --- */
+        /* --- 5. 심층 분석 (나머지) --- */
         .in-depth-analysis {
             margin-top: 30px;
             background-color: #fff;
@@ -268,7 +277,7 @@
             margin-bottom: 25px;
         }
         
-        /* Responsive Design */
+        /* 반응형 디자인 */
         @media (max-width: 900px) {
             .data-grid {
                 flex-direction: column; 
@@ -351,15 +360,13 @@
             <section class="data-grid">
 
                 <div class="data-column chart-wrapper">
-                    <h2>색상 분포</h2> 
-                    <div class="chart-container">
+                    <h2>색상 분포</h2> <div class="chart-container">
                         <canvas id="colorDonutChart"></canvas>
                     </div>
                 </div>
 
                 <div class="data-column palette-container">
-                    <h2>주요 팔레트</h2> 
-                    <div class="palette-grid">
+                    <h2>주요 팔레트</h2> <div class="palette-grid">
                         <div class="color-swatch">
                             <div class="swatch-box" style="background-color: #0a2e6c;"></div>
                             <code>#0a2e6c</code>
@@ -388,8 +395,7 @@
                 </div>
 
                 <div class="data-column emotion-gauge-container">
-                    <h2>작업 당시 기분</h2> 
-                    <div class="gauge-chart-wrapper">
+                    <h2>작업 당시 기분</h2> <div class="gauge-chart-wrapper">
                         <canvas id="emotionGaugeChart"></canvas>
                         <div class="gauge-score">2/10</div>
                     </div>
@@ -491,7 +497,7 @@
                 <article class="analysis-section">
                     <h2>반 고흐의 심리</h2> 
                     <p>반 고흐는 극심하고 혼란스러운 감정 상태에 있었습니다. 그는 심각한 정신 붕괴를 겪은 직후였습니다. 그는 고립되었습니다. 이 그림은 광기 속에서 만들어진 것이 아니라, 그의 격동적인 감정, 두려움, 영적 갈망을 예술로 "승화"시키려는 시도였습니다.</p> 
-                    <p>혼돈에도 불구하고, 많은 사람들은 이 그림을 위로의 그림으로 봅니다. 반 고흐는 구원을 찾고 있었지만, (그가 작게 그린) 교회가 아니라 (하늘이라는) 자연의 거대하고 압도적인 힘에서 찾고 있었습니다.</p> Solve</li>
+                    <p>혼돈에도 불구하고, 많은 사람들은 이 그림을 위로의 그림으로 봅니다. 반 고흐는 구원을 찾고 있었지만, (그가 작게 그린) 교회가 아니라 (하늘이라는) 자연의 거대하고 압도적인 힘에서 찾고 있었습니다.</p>
                 </article>
                 
             </section>
@@ -501,7 +507,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // --- Biểu đồ 1: Phân bổ màu sắc (Donut) ---
+            // --- 차트 1: 색상 분포 (도넛) ---
             const colorData = {
                 labels: [ 
                     '파란색 (~40%)',
@@ -527,7 +533,6 @@
 
             const ctxColor = document.getElementById('colorDonutChart');
             if (ctxColor) {
-                // === SỬA LỖI: 'd' -> '2d' ===
                 const colorDonutChart = new Chart(ctxColor.getContext('2d'), {
                     type: 'doughnut', 
                     data: colorData,
@@ -547,7 +552,7 @@
                 });
             }
 
-            // --- Biểu đồ 2: Đồng hồ đo cảm xúc ---
+            // --- 차트 2: 감정 게이지 ---
             const moodScore = 2;
             const maxScore = 10;
 
@@ -566,7 +571,6 @@
 
             const ctxGauge = document.getElementById('emotionGaugeChart');
             if (ctxGauge) {
-                // === SỬA LỖI: 'd' -> '2d' ===
                 const emotionGaugeChart = new Chart(ctxGauge.getContext('2d'), {
                     type: 'doughnut',
                     data: gaugeData,
