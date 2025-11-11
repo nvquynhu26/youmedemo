@@ -174,27 +174,36 @@
             height: 350px; 
         }
 
-        /* 2열: 색상 팔레트 (ĐÃ SỬA) */
+        /* === 2열: 색상 팔레트 (ĐÃ SỬA) === */
         .palette-container {
             text-align: center;
         }
-        .palette-grid {
+        .palette-grid { /* Giữ tên cũ, nhưng thay đổi cấu trúc */
             display: grid;
-            /* === YÊU CẦU 2.1: Sửa 3 cột thành 2 cột === */
-            grid-template-columns: repeat(2, 1fr); 
+            grid-template-columns: repeat(2, 1fr); /* Luôn là 2 cột */
             gap: 15px;
             margin-top: 20px;
-            /* Thêm padding để 2 cột cân đối hơn */
             padding: 0 20px;
             box-sizing: border-box;
         }
         .color-swatch {
             text-align: center;
         }
-        .swatch-box {
+        /* Ô MÀU CHÍNH (nằm đầu) */
+        .color-swatch.main-palette {
+            grid-column: 1 / -1; /* === YÊU CẦU 2.1: Ô này chiếm trọn 1 hàng === */
+            margin-bottom: 5px; /* Khoảng cách với 4 ô dưới */
+        }
+        .color-swatch.main-palette .swatch-box {
+            height: 80px; /* Ô chính to */
+        }
+        /* 4 Ô MÀU PHỤ */
+        .color-swatch.secondary-palette .swatch-box {
+            height: 54px; /* === YÊU CẦU 2.2: Ô phụ cao 2/3 (80px -> 54px) === */
+        }
+        
+        .swatch-box { /* Kiểu chung cho ô màu */
             width: 100%;
-            /* === YÊU CẦU 2.2: Sửa chiều cao từ 80px -> 54px === */
-            height: 54px; 
             border: 1px solid #ddd;
             border-radius: 4px;
         }
@@ -205,7 +214,7 @@
             padding: 2px 4px;
             border-radius: 3px;
         }
-        /* ============================================== */
+        /* ================================== */
 
         /* 3열: 감정 게이지 */
         .emotion-gauge-container {
@@ -483,32 +492,30 @@
                 <div class="data-column palette-container">
                     <h2>주요 팔레트</h2> 
                     <div class="palette-grid">
-                        <div class="color-swatch">
+                        <div class="color-swatch main-palette">
                             <div class="swatch-box" style="background-color: #0a2e6c;"></div>
-                            <code>#0a2e6c</code>
+                            <code>#0a2e6c (주요)</code>
                         </div>
-                        <div class="color-swatch">
+
+                        <div class="color-swatch secondary-palette">
                             <div class="swatch-box" style="background-color: #0c1a2d;"></div>
                             <code>#0c1a2d</code>
                         </div>
-                        <div class="color-swatch">
+                        <div class="color-swatch secondary-palette">
                             <div class="swatch-box" style="background-color: #f9d700;"></div>
                             <code>#f9d700</code>
                         </div>
-                        <div class="color-swatch">
+                        <div class="color-swatch secondary-palette">
                             <div class="swatch-box" style="background-color: #ffffff; border: 1px solid #eee;"></div>
                             <code>#ffffff</code>
                         </div>
-                        <div class="color-swatch">
+                         <div class="color-swatch secondary-palette">
                             <div class="swatch-box" style="background-color: #b05f2a;"></div>
                             <code>#b05f2a</code>
                         </div>
-                         <div class="color-swatch">
-                            <div class="swatch-box" style="background-color: #2a7b3b;"></div>
-                            <code>#2a7b3b</code>
                         </div>
-                    </div>
                 </div>
+
 
                 <div class="data-column emotion-gauge-container">
                     <h2>작업 당시 기분</h2> 
@@ -549,8 +556,8 @@
                     
                     <div class="period-details">
                         <h3>남프랑스 시기 특징 (1888-1890)</h3>
-                        <p><strong>붓놀림 (특징):</strong> 붓놀림이 '자체적인 생명'을 얻었습니다. 아를에서는 자신감 있고 리듬감이 있었고, 생레미에서는 우주적인 에너지 흐름처럼 소용돌이쳤습니다.</p>
-                        <p><strong>색채 (감정적 대비):</strong> 보색 이론(예: '밤의 카페'의 빨강-녹색)을 숙달하여 '인류의 무서운 열정'과 같은 강렬한 감정적 갈등을 창출했습니다.</p>
+                        <p>🖌️ <strong>붓놀림 (특징):</strong> 붓놀림이 '자체적인 생명'을 얻었습니다. 아를에서는 자신감 있고 리듬감이 있었고, 생레미에서는 우주적인 에너지 흐름처럼 소용돌이쳤습니다.</p>
+                        <p>🎨 <strong>색채 (감정적 대비):</strong> 보색 이론(예: '밤의 카페'의 빨강-녹색)을 숙달하여 '인류의 무서운 열정'과 같은 강렬한 감정적 갈등을 창출했습니다.</p>
                         
                         <div>
                             <div class="symbol-title">
