@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ko"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art Analysis: The Starry Night</title>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>작품 분석: 별이 빛나는 밤</title> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
+        /* --- Thêm font Pretendard --- */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
         /* --- General Styling --- */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* Đặt Pretendard làm font chính */
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f7f6;
@@ -71,9 +72,10 @@
             border: none;
             border-radius: 4px;
             font-size: 1em;
+            font-family: 'Pretendard', sans-serif; /* Đảm bảo font được áp dụng */
         }
 
-        /* --- 2. Painting Gallery (MỚI) --- */
+        /* --- 2. Painting Gallery --- */
         .painting-gallery {
             display: flex;
             align-items: center;
@@ -85,7 +87,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .painting-gallery img {
-            max-width: 85%; /* Thu nhỏ ảnh để chừa chỗ cho nút */
+            max-width: 85%; 
             height: auto;
             border: 8px solid #fff;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -115,7 +117,7 @@
             right: 15px;
         }
 
-        /* --- 3. Painting Info (TÁCH RIÊNG) --- */
+        /* --- 3. Painting Info --- */
         .painting-info {
             text-align: center;
             font-size: 1.1em;
@@ -131,7 +133,7 @@
             margin: 0;
         }
 
-        /* --- 4. Data Analysis Grid (LƯỚI 3 CỘT MỚI) --- */
+        /* --- 4. Data Analysis Grid (LƯỚI 3 CỘT) --- */
         .data-grid {
             display: flex;
             justify-content: space-between;
@@ -146,15 +148,14 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            /* Thêm chiều cao cố định để 3 cột bằng nhau */
             height: 450px; 
-            box-sizing: border-box; /* Quan trọng để padding không làm hỏng layout */
+            box-sizing: border-box; 
         }
         
         /* Cột 1: Biểu đồ Donut */
         .chart-container {
             position: relative;
-            height: 350px; /* Tăng chiều cao cho biểu đồ */
+            height: 350px; 
         }
 
         /* Cột 2: Bảng màu */
@@ -184,9 +185,9 @@
             border-radius: 3px;
         }
 
-        /* Cột 3: Đồng hồ đo cảm xúc (MỚI) */
+        /* Cột 3: Đồng hồ đo cảm xúc */
         .emotion-gauge-container {
-            position: relative; /* Để định vị text bên trong */
+            position: relative; 
             text-align: center;
         }
         .gauge-chart-wrapper {
@@ -195,21 +196,22 @@
         }
         .gauge-score {
             position: absolute;
-            top: 75%; /* Điều chỉnh để nằm ở giữa phần rỗng của đồng hồ */
+            top: 75%; 
             left: 50%;
             transform: translateX(-50%);
             font-size: 3em;
             font-weight: bold;
-            color: #d9534f; /* Màu đỏ cho tâm trạng thấp */
+            color: #d9534f; 
         }
         .gauge-label {
             font-size: 1.1em;
             color: #555;
-            margin-top: -30px; /* Kéo text lên gần đồng hồ hơn */
+            /* === SỬA LỖI 1: Bỏ margin âm, thay bằng margin dương === */
+            margin-top: 10px; /* Bỏ: -30px, Thêm: 10px */
         }
 
 
-        /* --- 5. In-depth Analysis (GIỮ NGUYÊN) --- */
+        /* --- 5. In-depth Analysis --- */
         .in-depth-analysis {
             margin-top: 30px;
             background-color: #fff;
@@ -235,11 +237,11 @@
         /* Responsive Design */
         @media (max-width: 900px) {
             .data-grid {
-                flex-direction: column; /* Xếp chồng các cột lên nhau */
+                flex-direction: column; 
             }
             .data-column {
-                flex-basis: 100%; /* Mỗi cột chiếm 100% */
-                height: auto; /* Bỏ chiều cao cố định */
+                flex-basis: 100%; 
+                height: auto; 
             }
         }
         @media (max-width: 768px) {
@@ -252,7 +254,7 @@
                 margin: 5px 0;
             }
             .painting-gallery img {
-                max-width: 75%; /* Thu nhỏ ảnh hơn nữa trên di động */
+                max-width: 75%; 
             }
             .gallery-arrow {
                 width: 40px;
@@ -269,61 +271,38 @@
         <header>
             <nav class="search-bar">
                 <div class="search-group">
-                    <label for="search-name">Search by Name</label>
-                    <input type="text" id="search-name" placeholder="e.g., The Starry Night">
+                    <label for="search-name">이름으로 검색</label> <input type="text" id="search-name" placeholder="예: 별이 빛나는 밤"> </div>
+                <div class="search-group">
+                    <label for="search-color">색상으로 검색</label> <select id="search-color">
+                        <option value="">--색상 선택--</option> <option value="blue">파란색</option> <option value="yellow">노란색</option> <option value="black">검은색</option> </select>
                 </div>
                 <div class="search-group">
-                    <label for="search-color">Search by Color</label>
-                    <select id="search-color">
-                        <option value="">--Select a color--</option>
-                        <option value="blue">Blue</option>
-                        <option value="yellow">Yellow</option>
-                        <option value="black">Black</option>
-                    </select>
-                </div>
-                <div class="search-group">
-                    <label for="search-period">Search by Period</label>
-                    <select id="search-period">
-                        <option value="">--Select a period--</option>
-                        <option value="netherlands">Netherlands</option>
-                        <option value="paris">Paris</option>
-                        <option value="south_france">South of France</option>
-                    </select>
+                    <label for="search-period">시기로 검색</label> <select id="search-period">
+                        <option value="">--시기 선택--</option> <option value="netherlands">네덜란드</option> <option value="paris">파리</option> <option value="south_france">남프랑스</option> </select>
                 </div>
             </nav>
         </header>
 
         <main>
             <section class="painting-gallery">
-                <button class="gallery-arrow prev" aria-label="Previous painting" onclick="alert('Chức năng chuyển tranh trước (chưa cài đặt)');">‹</button>
-                
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
-                     alt="The Starry Night by Vincent van Gogh">
-
-                <button class="gallery-arrow next" aria-label="Next painting" onclick="alert('Chức năng chuyển tranh sau (chưa cài đặt)');">›</button>
-            </section>
+                <button class="gallery-arrow prev" aria-label="이전 그림" onclick="alert('이전 그림 기능 (미설정)');">‹</button> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
+                     alt="빈센트 반 고흐의 별이 빛나는 밤"> <button class="gallery-arrow next" aria-label="다음 그림" onclick="alert('다음 그림 기능 (미설정)');">›</button> </section>
 
             <section class="painting-info">
-                <h1>The Starry Night</h1>
-                <p>
-                    Vincent van Gogh, 1889 (South of France) <br>
-                    73.7 cm × 92.1 cm | Oil on canvas <br>
-                    Currently at: Museum of Modern Art (MoMA), New York City, USA
-                </p>
+                <h1>별이 빛나는 밤</h1> <p>
+                    빈센트 반 고흐, 1889 (남프랑스) <br> 73.7 cm × 92.1 cm | 캔버스에 유채 <br> 현재 소장: 뉴욕 현대 미술관 (MoMA), 미국 뉴욕 </p>
             </section>
 
             <section class="data-grid">
 
                 <div class="data-column chart-wrapper">
-                    <h2>Color Distribution</h2>
-                    <div class="chart-container">
+                    <h2>색상 분포</h2> <div class="chart-container">
                         <canvas id="colorDonutChart"></canvas>
                     </div>
                 </div>
 
                 <div class="data-column palette-container">
-                    <h2>Primary Palette</h2>
-                    <div class="palette-grid">
+                    <h2>주요 팔레트</h2> <div class="palette-grid">
                         <div class="color-swatch">
                             <div class="swatch-box" style="background-color: #0a2e6c;"></div>
                             <code>#0a2e6c</code>
@@ -352,93 +331,44 @@
                 </div>
 
                 <div class="data-column emotion-gauge-container">
-                    <h2>Mood at Painting</h2>
-                    <div class="gauge-chart-wrapper">
+                    <h2>작업 당시 기분</h2> <div class="gauge-chart-wrapper">
                         <canvas id="emotionGaugeChart"></canvas>
                         <div class="gauge-score">2/10</div>
                     </div>
                     <div class="gauge-label">
-                        <p>Tâm trạng: <strong>Rất thấp (Hỗn loạn & Tuyệt vọng)</strong></p>
-                        <p>Vẽ tại trại tị nạn Saint-Paul-de-Mausole sau một cơn khủng hoảng tinh thần.</p>
-                    </div>
+                        <p>기분: <strong>매우 낮음 (혼란 & 절망)</strong></p> <p>생폴드모솔 요양원 입원 중 정신적 위기 이후 작업됨.</p> </div>
                 </div>
             </section>
 
             <section class="in-depth-analysis">
                 <article class="analysis-section">
-                    <h2>Painting Technique</h2>
-                    <h3>Swirling Brushwork</h3>
-                    <p>This is the defining technique of his Saint-Rémy period. The entire sky, the hills, and even the cypress tree are painted with powerful, swirling, coiling brushstrokes, creating an "energy field" in motion.</p>
-                    
-                    <h3>Impasto</h3>
-                    <p>This technique is pushed to the extreme. Paint is applied thickly, perhaps straight from the tube, especially on the stars, moon, and swirls, giving them a 3D texture that "catches" real light.</p>
-                    
-                    <h3>Arbitrary/Expressive Color</h3>
-                    <p>He didn't paint what he saw, but what he felt. The sky isn't factually Ultramarine, nor do stars "burn" Cadmium Yellow. This is the color of emotion.</p>
-                    
-                    <h3>Strong Outlines</h3>
-                    <p>The cypress and village houses are outlined in Dark Blue/Black, a legacy of Japonisme, but now used to create drama and separate the forms.</p>
-                </article>
+                    <h2>그림 기법</h2> <h3>소용돌이치는 붓놀림</h3> <p>생레미 시기의 특징적인 기법입니다. 하늘, 언덕, 심지어 사이프러스 나무까지 강력하고 소용돌이치는 붓놀림으로 그려져, 움직이는 "에너지의 장"을 만듭니다.</p> <h3>임파스토</h3> <p>이 기법이 극도로 사용되었습니다. 물감을 튜브에서 바로 짠 것처럼 두껍게 칠했으며, 특히 별, 달, 소용돌이에 적용되어 실제 빛을 "잡아내는" 3D 질감을 줍니다.</p> <h3>자의적/표현적 색채</h3> <p>그는 본 것을 그린 것이 아니라 느낀 것을 그렸습니다. 하늘은 실제로 울트라마린이 아니며, 별은 카드뮴 옐로우로 "타오르지" 않습니다. 이것은 감정의 색입니다.</p> <h3>강한 윤곽선</h3> <p>사이프러스와 마을 집들은 어두운 파란색/검은색으로 윤곽선이 그려져 있습니다. 이는 자포니즘의 유산이지만, 여기서는 드라마를 만들고 형태를 분리하는 데 사용됩니다.</p> </article>
                 
                 <article class="analysis-section">
-                    <h2>Meaning of the Painting</h2>
-                    <h3>View from the Asylum</h3>
-                    <p>The painting was based on the view from his asylum room window at Saint-Paul-de-Mausole, looking east before sunrise, though painted from memory.</p>
-                    
-                    <h3>The "Dialogue" of Three Elements</h3>
-                    <p>The painting is a psychological drama between three parts:</p>
-                    <ul>
-                        <li><strong>The Sky (The Cosmos/Supernatural):</strong> The largest, most chaotic part. It's a cosmic dance, a "vortex" of emotion and spiritual energy. The stars (especially Venus, the brightest) and the moon (an unrealistic combination of crescent and sun) are "bursts" of hope or divine power.</li>
-                        <li><strong>The Village (The Serene/Human):</strong> Nestled in the valley. This part is from memory (the church spire is Dutch, from his homeland, not French). It represents peace, community, and human warmth (lit windows) from which Van Gogh was separated and yearned for.</li>
-                        <li><strong>The Cypress Tree (The Inner Self/Death):</strong> In the foreground, rising like a black flame. Cypress trees in Provence were often associated with cemeteries and death. For Van Gogh, it symbolizes his own inner turmoil and suffering, a dark "bridge" of longing, reaching from Earth (life) to the Sky (eternity/death).</li>
-                    </ul>
+                    <h2>그림의 의미</h2> <h3>요양원에서 바라본 풍경</h3> <p>이 그림은 생폴드모솔 요양원 병실 창문에서 해가 뜨기 전 동쪽을 바라본 풍경을 기반으로 하지만, 기억에 의존해 그려졌습니다.</p> <h3>세 가지 요소의 "대화"</h3> <p>이 그림은 세 부분 사이의 심리적 드라마입니다:</p> <ul>
+                        <li><strong>하늘 (우주/초자연):</strong> 가장 크고 혼돈스러운 부분. 이것은 우주의 춤이며, 감정과 영적 에너지의 "소용돌이"입니다. 별(특히 가장 밝은 금성)과 달(초승달과 태양이 비현실적으로 결합됨)은 희망 또는 신성한 힘의 "폭발"입니다.</li> <li><strong>마을 (평온/인간):</strong> 계곡에 자리 잡고 있습니다. 이 부분은 기억에서 가져온 것입니다(교회 첨탑은 프랑스가 아닌 그의 고향 네덜란드식입니다). 이것은 반 고흐가 갈망했던 평화, 공동체, 그리고 인간적인 따뜻함(불 켜진 창문)을 나타냅니다.</li> <li><strong>사이프러스 나무 (내면/죽음):</strong> 전경에 검은 불꽃처럼 솟아 있습니다. 프로방스의 사이프러스 나무는 종종 묘지와 죽음과 연관되었습니다. 반 고흐에게 이것은 자신의 내면적 혼란과 고통을 상징하며, 지상(삶)에서 하늘(영원/죽음)로 향하는 어두운 "다리"입니다.</li> </ul>
                 </article>
 
                 <article class="analysis-section">
-                    <h2>Intention when Painting</h2>
-                    <h3>Technical Intention (Swirling Brushwork)</h3>
-                    <p>The intent was to paint "energy," not objects. He wanted to show the "hidden life," the "vibration" of the cosmos. The world is not static, but alive and roiling.</p>
-                    
-                    <h3>Color Intention (Arbitrary)</h3>
-                    <p>The intent was "expression." He used Blue because he felt infinity and melancholy. He used Yellow because he felt hope and divine energy.</p>
-                    
-                    <h3>Contrast</h3>
-                    <p>The key intention was dramatic contrast:</p>
-                    <ul>
-                        <li><strong>Sky (Chaotic, Supernatural) vs. Village (Calm, Human):</strong> The world of God/The Cosmos versus the world of sleeping humanity.</li>
-                        <li><strong>Cypress (Dark,Struggling) vs. Sky (Bright, Eternal):</strong> His earthly suffering yearning for the divine light.</li>
-                    </ul>
+                    <h2>그림의 의도</h2> <h3>기술적 의도 (소용돌이치는 붓놀림)</h3> <p>의도는 사물이 아닌 "에너지"를 그리는 것이었습니다. 그는 "숨겨진 생명", 우주의 "진동"을 보여주고 싶었습니다. 세상은 정적이지 않고 살아있고 요동칩니다.</p> <h3>색채 의도 (자의적)</h3> <p>의도는 "표현"이었습니다. 그는 무한함과 우울함을 느꼈기 때문에 파란색을 사용했습니다. 그는 희망과 신성한 에너지를 느꼈기 때문에 노란색을 사용했습니다.</p> <h3>대비</h3> <p>핵심 의도는 극적인 대비였습니다:</p> <ul>
+                        <li><strong>하늘 (혼돈, 초자연) vs. 마을 (고요, 인간):</strong> 신/우주의 세계 대 잠자는 인류의 세계.</li> <li><strong>사이프러스 (어둠, 고투) vs. 하늘 (밝음, 영원):</strong> 신성한 빛을 갈망하는 그의 지상 고통.</li> </ul>
                 </article>
 
                 <article class="analysis-section">
-                    <h2>Van Gogh's Psychology</h2>
-                    <p>Van Gogh was in an intense and chaotic emotional state. He had just suffered a severe mental breakdown. He was isolated. This painting was not made *in* a fit of madness, but rather as an attempt to "channel" his turbulent emotions, fears, and spiritual yearning *into* art.</p>
-                    <p>Despite the chaos, many see this as a painting of consolation. Van Gogh was searching for redemption, not in the church (which he painted small), but in the grand, overwhelming power of nature (the sky).</p>
-                </article>
+                    <h2>반 고흐의 심리</h2> <p>반 고흐는 극심하고 혼란스러운 감정 상태에 있었습니다. 그는 심각한 정신 붕괴를 겪은 직후였습니다. 그는 고립되었습니다. 이 그림은 광기 속에서 만들어진 것이 아니라, 그의 격동적인 감정, 두려움, 영적 갈망을 예술로 "승화"시키려는 시도였습니다.</p> <p>혼돈에도 불구하고, 많은 사람들은 이 그림을 위로의 그림으로 봅니다. 반 고흐는 구원을 찾고 있었지만, (그가 작게 그린) 교회가 아니라 (하늘이라는) 자연의 거대하고 압도적인 힘에서 찾고 있었습니다.</p> </article>
                 
                 <article class="analysis-section color-meaning">
-                     <h2>Color Symbolism</h2>
-                     <ul>
+                     <h2>색의 상징</h2> <ul>
                         <li>
-                            <strong>Blue (Ultramarine/Prussian)</strong>
-                            Color of the sky, the cosmos, infinity, and spirituality. But it's also a "cold" color, symbolizing his melancholy and isolation in the asylum.
-                        </li>
+                            <strong>파란색 (울트라마린/프러시안)</strong> 하늘, 우주, 무한, 영성의 색. 하지만 동시에 요양원에서의 우울함과 고립을 상징하는 "차가운" 색입니다. </li>
                         <li>
-                            <strong>Yellow (Cadmium/Chrome)</strong>
-                            Color of the stars and moon. It's the antidote to Blue. It is life, hope, divine energy, and inner "fire." The stars aren't just stars; they are "explosions" of hope.
-                        </li>
+                            <strong>노란색 (카드뮴/크롬)</strong> 별과 달의 색. 파란색의 해독제입니다. 생명, 희망, 신성한 에너지, 내면의 "불꽃"입니다. 별은 단순한 별이 아니라 희망의 "폭발"입니다. </li>
                         <li>
-                            <strong>Black / Darkest Blue</strong>
-                            Color of the cypress tree and outlines. Symbolizes death, grief, and despair. It's the "darkness" of the earth reaching up to the sky.
-                        </li>
+                            <strong>검은색 / 가장 어두운 파란색</strong> 사이프러스 나무와 윤곽선의 색. 죽음, 슬픔, 절망을 상징합니다. 하늘을 향해 뻗어가는 지상의 "어둠"입니다. </li>
                         <li>
-                            <strong>White</strong>
-                            Used (often mixed with Yellow) to create the brightest highlights. Symbolizes pure light, the core of energy, making the stars "burn."
-                        </li>
+                            <strong>흰색</strong> 가장 밝은 하이라이트를 만드는 데 (주로 노란색과 혼합되어) 사용되었습니다. 순수한 빛, 에너지의 핵심을 상징하며 별을 "타오르게" 만듭니다. </li>
                         <li>
-                            <strong>Brown / Orange</strong>
-                            Color of the village roofs. This is the color of the earth, of humanity. It symbolizes warmth, safety, and peace—a stark contrast to the cosmic drama above.
-                        </li>
+                            <strong>갈색 / 주황색</strong> 마을 지붕의 색. 이것은 대지, 인류의 색입니다. 따뜻함, 안전, 평화를 상징하며, 위의 우주적 드라마와 극명한 대조를 이룹니다. </li>
                     </ul>
                 </article>
             </section>
@@ -450,22 +380,22 @@
             
             // --- Biểu đồ 1: Phân bổ màu sắc (Donut) ---
             const colorData = {
-                labels: [
-                    'Blue (~40%)',
-                    'Black / Dark Blue (~20%)',
-                    'Yellow (~15%)',
-                    'White (~15%)',
-                    'Brown / Orange (~10%)'
+                labels: [ // Dịch
+                    '파란색 (~40%)',
+                    '검은색 / 어두운 파란색 (~20%)',
+                    '노란색 (~15%)',
+                    '흰색 (~15%)',
+                    '갈색 / 주황색 (~10%)'
                 ],
                 datasets: [{
-                    label: 'Color Distribution',
-                    data: [40, 20, 15, 15, 10], // Tỷ lệ phần trăm
+                    label: '색상 분포', // Dịch
+                    data: [40, 20, 15, 15, 10], 
                     backgroundColor: [
-                        '#0a2e6c', // Blue
-                        '#0c1a2d', // Black / Dark Blue
-                        '#f9d700', // Yellow
-                        '#f0f0f0', // White (dùng màu xám nhạt để nhìn thấy trên nền trắng)
-                        '#b05f2a'  // Brown / Orange
+                        '#0a2e6c', 
+                        '#0c1a2d', 
+                        '#f9d700', 
+                        '#f0f0f0', 
+                        '#b05f2a'  
                     ],
                     borderColor: '#fff',
                     borderWidth: 2
@@ -493,18 +423,17 @@
                 });
             }
 
-            // --- Biểu đồ 2: Đồng hồ đo cảm xúc (MỚI) ---
-            // Dữ liệu: Điểm là 2/10
+            // --- Biểu đồ 2: Đồng hồ đo cảm xúc ---
             const moodScore = 2;
             const maxScore = 10;
 
             const gaugeData = {
-                labels: ['Mood', 'Remaining'],
+                labels: ['기분', '남음'], // Dịch
                 datasets: [{
-                    data: [moodScore, maxScore - moodScore], // 2 phần điền, 8 phần còn lại
+                    data: [moodScore, maxScore - moodScore], 
                     backgroundColor: [
-                        '#d9534f', // Màu đỏ cho tâm trạng thấp
-                        '#e0e0e0'  // Màu xám cho phần còn lại
+                        '#d9534f', 
+                        '#e0e0e0'  
                     ],
                     borderColor: '#fff',
                     borderWidth: 1
@@ -519,12 +448,10 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        // Cấu hình để biến nó thành đồng hồ đo 180 độ
-                        rotation: -90,      // Bắt đầu từ 9 giờ
-                        circumference: 180, // Chỉ vẽ nửa vòng tròn
-                        cutout: '70%',      // Độ dày của đồng hồ
+                        rotation: -90,      
+                        circumference: 180, 
+                        cutout: '70%',      
                         plugins: {
-                            // Tắt hết chú giải và tooltip
                             legend: {
                                 display: false
                             },
