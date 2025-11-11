@@ -22,6 +22,24 @@
             margin: 0 auto;
             padding: 20px;
         }
+        h1 {
+            font-size: 2.2em;
+            text-align: center;
+            color: #0c1a2d;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.8em;
+            color: #0a2e6c; /* Deep Blue */
+            border-bottom: 2px solid #f9d700; /* Yellow accent */
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        h3 {
+            font-size: 1.3em;
+            color: #333;
+            font-weight: 600;
+        }
 
         /* --- 1. Header & Search Bar --- */
         header {
@@ -29,6 +47,7 @@
             padding: 20px;
             color: #fff;
             margin-bottom: 20px;
+            border-radius: 8px;
         }
         .search-bar {
             display: flex;
@@ -54,51 +73,91 @@
             font-size: 1em;
         }
 
-        /* --- 2. Painting Display --- */
-        .painting-display {
-            text-align: center;
+        /* --- 2. Painting Gallery (MỚI) --- */
+        .painting-gallery {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .painting-display img {
-            max-width: 100%;
+        .painting-gallery img {
+            max-width: 85%; /* Thu nhỏ ảnh để chừa chỗ cho nút */
             height: auto;
             border: 8px solid #fff;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .gallery-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .gallery-arrow.prev {
+            left: 15px;
+        }
+        .gallery-arrow.next {
+            right: 15px;
+        }
+
+        /* --- 3. Painting Info (TÁCH RIÊNG) --- */
         .painting-info {
+            text-align: center;
             font-size: 1.1em;
             font-style: italic;
             color: #555;
-            margin-top: 15px;
+            margin: 20px 0;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .painting-info p {
+            margin: 0;
         }
 
-        /* --- 3. Color Analysis (3-Column Layout) --- */
-        .color-analysis {
+        /* --- 4. Data Analysis Grid (LƯỚI 3 CỘT MỚI) --- */
+        .data-grid {
             display: flex;
             justify-content: space-between;
             margin-top: 30px;
             gap: 20px; 
             flex-wrap: wrap; 
         }
-        .color-column {
+        .data-column {
             flex-basis: 32%; 
             min-width: 300px; 
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            /* Thêm chiều cao cố định để 3 cột bằng nhau */
+            height: 450px; 
+            box-sizing: border-box; /* Quan trọng để padding không làm hỏng layout */
         }
         
-        /* Cột bên trái: Biểu đồ Donut */
+        /* Cột 1: Biểu đồ Donut */
         .chart-container {
             position: relative;
-            height: 300px; 
+            height: 350px; /* Tăng chiều cao cho biểu đồ */
         }
 
-        /* Cột ở giữa: Bảng màu */
+        /* Cột 2: Bảng màu */
         .palette-container {
             text-align: center;
         }
@@ -125,7 +184,42 @@
             border-radius: 3px;
         }
 
-        /* Cột bên phải: Ý nghĩa màu sắc */
+        /* Cột 3: Đồng hồ đo cảm xúc (MỚI) */
+        .emotion-gauge-container {
+            position: relative; /* Để định vị text bên trong */
+            text-align: center;
+        }
+        .gauge-chart-wrapper {
+            position: relative;
+            height: 300px;
+        }
+        .gauge-score {
+            position: absolute;
+            top: 75%; /* Điều chỉnh để nằm ở giữa phần rỗng của đồng hồ */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            font-weight: bold;
+            color: #d9534f; /* Màu đỏ cho tâm trạng thấp */
+        }
+        .gauge-label {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: -30px; /* Kéo text lên gần đồng hồ hơn */
+        }
+
+
+        /* --- 5. In-depth Analysis (GIỮ NGUYÊN) --- */
+        .in-depth-analysis {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .analysis-section {
+            margin-bottom: 25px;
+        }
         .color-meaning ul {
             list-style: none;
             padding-left: 0;
@@ -137,36 +231,18 @@
             display: block; 
             font-size: 1.1em;
         }
-
-        /* --- 4. In-depth Analysis --- */
-        .in-depth-analysis {
-            margin-top: 30px;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        .analysis-section {
-            margin-bottom: 25px;
-        }
-        h2 {
-            font-size: 1.8em;
-            color: #0a2e6c; /* Deep Blue */
-            border-bottom: 2px solid #f9d700; /* Yellow accent */
-            padding-bottom: 5px;
-            margin-top: 0;
-        }
-        h3 {
-            font-size: 1.3em;
-            color: #333;
-            font-weight: 600;
-        }
         
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .color-analysis {
+        @media (max-width: 900px) {
+            .data-grid {
                 flex-direction: column; /* Xếp chồng các cột lên nhau */
             }
+            .data-column {
+                flex-basis: 100%; /* Mỗi cột chiếm 100% */
+                height: auto; /* Bỏ chiều cao cố định */
+            }
+        }
+        @media (max-width: 768px) {
             .search-bar {
                 flex-direction: column;
                 align-items: stretch;
@@ -174,6 +250,14 @@
             .search-bar .search-group {
                 width: 100%;
                 margin: 5px 0;
+            }
+            .painting-gallery img {
+                max-width: 75%; /* Thu nhỏ ảnh hơn nữa trên di động */
+            }
+            .gallery-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5em;
             }
         }
     </style>
@@ -210,29 +294,34 @@
         </header>
 
         <main>
-            <section class="painting-display">
+            <section class="painting-gallery">
+                <button class="gallery-arrow prev" aria-label="Previous painting" onclick="alert('Chức năng chuyển tranh trước (chưa cài đặt)');">‹</button>
+                
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
-                    alt="The Starry Night by Vincent van Gogh">
-                
+                     alt="The Starry Night by Vincent van Gogh">
+
+                <button class="gallery-arrow next" aria-label="Next painting" onclick="alert('Chức năng chuyển tranh sau (chưa cài đặt)');">›</button>
+            </section>
+
+            <section class="painting-info">
                 <h1>The Starry Night</h1>
-                
-                <p class="painting-info">
+                <p>
                     Vincent van Gogh, 1889 (South of France) <br>
                     73.7 cm × 92.1 cm | Oil on canvas <br>
                     Currently at: Museum of Modern Art (MoMA), New York City, USA
                 </p>
             </section>
 
-            <section class="color-analysis">
+            <section class="data-grid">
 
-                <div class="color-column chart-wrapper">
+                <div class="data-column chart-wrapper">
                     <h2>Color Distribution</h2>
                     <div class="chart-container">
                         <canvas id="colorDonutChart"></canvas>
                     </div>
                 </div>
 
-                <div class="color-column palette-container">
+                <div class="data-column palette-container">
                     <h2>Primary Palette</h2>
                     <div class="palette-grid">
                         <div class="color-swatch">
@@ -255,33 +344,23 @@
                             <div class="swatch-box" style="background-color: #b05f2a;"></div>
                             <code>#b05f2a</code>
                         </div>
+                         <div class="color-swatch">
+                            <div class="swatch-box" style="background-color: #2a7b3b;"></div>
+                            <code>#2a7b3b</code>
+                        </div>
                     </div>
                 </div>
 
-                <div class="color-column color-meaning">
-                    <h2>Color Symbolism</h2>
-                    <ul>
-                        <li>
-                            <strong>Blue (Ultramarine/Prussian)</strong>
-                            Color of the sky, the cosmos, infinity, and spirituality. But it's also a "cold" color, symbolizing his melancholy and isolation in the asylum.
-                        </li>
-                        <li>
-                            <strong>Yellow (Cadmium/Chrome)</strong>
-                            Color of the stars and moon. It's the antidote to Blue. It is life, hope, divine energy, and inner "fire." The stars aren't just stars; they are "explosions" of hope.
-                        </li>
-                        <li>
-                            <strong>Black / Darkest Blue</strong>
-                            Color of the cypress tree and outlines. Symbolizes death, grief, and despair. It's the "darkness" of the earth reaching up to the sky.
-                        </li>
-                        <li>
-                            <strong>White</strong>
-                            Used (often mixed with Yellow) to create the brightest highlights. Symbolizes pure light, the core of energy, making the stars "burn."
-                        </li>
-                        <li>
-                            <strong>Brown / Orange</strong>
-                            Color of the village roofs. This is the color of the earth, of humanity. It symbolizes warmth, safety, and peace—a stark contrast to the cosmic drama above.
-                        </li>
-                    </ul>
+                <div class="data-column emotion-gauge-container">
+                    <h2>Mood at Painting</h2>
+                    <div class="gauge-chart-wrapper">
+                        <canvas id="emotionGaugeChart"></canvas>
+                        <div class="gauge-score">2/10</div>
+                    </div>
+                    <div class="gauge-label">
+                        <p>Tâm trạng: <strong>Rất thấp (Hỗn loạn & Tuyệt vọng)</strong></p>
+                        <p>Vẽ tại trại tị nạn Saint-Paul-de-Mausole sau một cơn khủng hoảng tinh thần.</p>
+                    </div>
                 </div>
             </section>
 
@@ -336,14 +415,40 @@
                     <p>Van Gogh was in an intense and chaotic emotional state. He had just suffered a severe mental breakdown. He was isolated. This painting was not made *in* a fit of madness, but rather as an attempt to "channel" his turbulent emotions, fears, and spiritual yearning *into* art.</p>
                     <p>Despite the chaos, many see this as a painting of consolation. Van Gogh was searching for redemption, not in the church (which he painted small), but in the grand, overwhelming power of nature (the sky).</p>
                 </article>
+                
+                <article class="analysis-section color-meaning">
+                     <h2>Color Symbolism</h2>
+                     <ul>
+                        <li>
+                            <strong>Blue (Ultramarine/Prussian)</strong>
+                            Color of the sky, the cosmos, infinity, and spirituality. But it's also a "cold" color, symbolizing his melancholy and isolation in the asylum.
+                        </li>
+                        <li>
+                            <strong>Yellow (Cadmium/Chrome)</strong>
+                            Color of the stars and moon. It's the antidote to Blue. It is life, hope, divine energy, and inner "fire." The stars aren't just stars; they are "explosions" of hope.
+                        </li>
+                        <li>
+                            <strong>Black / Darkest Blue</strong>
+                            Color of the cypress tree and outlines. Symbolizes death, grief, and despair. It's the "darkness" of the earth reaching up to the sky.
+                        </li>
+                        <li>
+                            <strong>White</strong>
+                            Used (often mixed with Yellow) to create the brightest highlights. Symbolizes pure light, the core of energy, making the stars "burn."
+                        </li>
+                        <li>
+                            <strong>Brown / Orange</strong>
+                            Color of the village roofs. This is the color of the earth, of humanity. It symbolizes warmth, safety, and peace—a stark contrast to the cosmic drama above.
+                        </li>
+                    </ul>
+                </article>
             </section>
         </main>
     </div>
 
     <script>
-        // BƯỚC SỬA LỖI QUAN TRỌNG: Đảm bảo DOM đã tải xong trước khi vẽ biểu đồ
         document.addEventListener('DOMContentLoaded', function() {
-            // Dữ liệu cho biểu đồ, lấy từ thông tin của bạn
+            
+            // --- Biểu đồ 1: Phân bổ màu sắc (Donut) ---
             const colorData = {
                 labels: [
                     'Blue (~40%)',
@@ -367,25 +472,64 @@
                 }]
             };
 
-            // Lấy thẻ canvas
-            const ctx = document.getElementById('colorDonutChart');
-
-            // Kiểm tra xem thẻ canvas có tồn tại không trước khi tạo biểu đồ
-            if (ctx) {
-                // Tạo biểu đồ donut mới
-                const colorDonutChart = new Chart(ctx.getContext('2d'), {
-                    type: 'doughnut', // Loại biểu đồ là donut
+            const ctxColor = document.getElementById('colorDonutChart');
+            if (ctxColor) {
+                const colorDonutChart = new Chart(ctxColor.getContext('2d'), {
+                    type: 'doughnut', 
                     data: colorData,
                     options: {
-                        responsive: true, // Tự động điều chỉnh kích thước
-                        maintainAspectRatio: false, // Không giữ tỷ lệ, để biểu đồ lấp đầy container
+                        responsive: true, 
+                        maintainAspectRatio: false, 
                         plugins: {
                             legend: {
-                                position: 'bottom', // Hiển thị chú giải ở dưới
+                                position: 'bottom', 
                                 labels: {
                                     boxWidth: 20,
                                     padding: 15
                                 }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // --- Biểu đồ 2: Đồng hồ đo cảm xúc (MỚI) ---
+            // Dữ liệu: Điểm là 2/10
+            const moodScore = 2;
+            const maxScore = 10;
+
+            const gaugeData = {
+                labels: ['Mood', 'Remaining'],
+                datasets: [{
+                    data: [moodScore, maxScore - moodScore], // 2 phần điền, 8 phần còn lại
+                    backgroundColor: [
+                        '#d9534f', // Màu đỏ cho tâm trạng thấp
+                        '#e0e0e0'  // Màu xám cho phần còn lại
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            };
+
+            const ctxGauge = document.getElementById('emotionGaugeChart');
+            if (ctxGauge) {
+                const emotionGaugeChart = new Chart(ctxGauge.getContext('2d'), {
+                    type: 'doughnut',
+                    data: gaugeData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        // Cấu hình để biến nó thành đồng hồ đo 180 độ
+                        rotation: -90,      // Bắt đầu từ 9 giờ
+                        circumference: 180, // Chỉ vẽ nửa vòng tròn
+                        cutout: '70%',      // Độ dày của đồng hồ
+                        plugins: {
+                            // Tắt hết chú giải và tooltip
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: false
                             }
                         }
                     }
