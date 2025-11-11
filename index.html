@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko"> <head>
+<html lang="ko">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>작품 분석: 별이 빛나는 밤</title> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>작품 분석: 별이 빛나는 밤</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         /* --- Thêm font Pretendard --- */
@@ -10,7 +13,6 @@
 
         /* --- General Styling --- */
         body {
-            /* Đặt Pretendard làm font chính */
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -31,8 +33,8 @@
         }
         h2 {
             font-size: 1.8em;
-            color: #0a2e6c; /* Deep Blue */
-            border-bottom: 2px solid #f9d700; /* Yellow accent */
+            color: #0a2e6c; 
+            border-bottom: 2px solid #f9d700; 
             padding-bottom: 5px;
             margin-top: 0;
         }
@@ -44,7 +46,7 @@
 
         /* --- 1. Header & Search Bar --- */
         header {
-            background-color: #0c1a2d; /* Dark blue from the painting */
+            background-color: #0c1a2d; 
             padding: 20px;
             color: #fff;
             margin-bottom: 20px;
@@ -64,7 +66,7 @@
         .search-bar label {
             font-size: 0.9em;
             margin-bottom: 5px;
-            color: #f9d700; /* Yellow from the painting */
+            color: #f9d700; 
         }
         .search-bar input,
         .search-bar select {
@@ -72,7 +74,7 @@
             border: none;
             border-radius: 4px;
             font-size: 1em;
-            font-family: 'Pretendard', sans-serif; /* Đảm bảo font được áp dụng */
+            font-family: 'Pretendard', sans-serif; 
         }
 
         /* --- 2. Painting Gallery --- */
@@ -117,7 +119,7 @@
             right: 15px;
         }
 
-        /* --- 3. Painting Info --- */
+        /* --- 3. Painting Info (ĐÃ SỬA) --- */
         .painting-info {
             text-align: center;
             font-size: 1.1em;
@@ -128,6 +130,14 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            /* === YÊU CẦU 2: Thêm Flexbox để căn giữa dọc === */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 150px; /* Đặt chiều cao tối thiểu để thấy rõ căn giữa */
+        }
+        .painting-info h1 {
+            margin-bottom: 15px; /* Tăng khoảng cách 1 chút */
         }
         .painting-info p {
             margin: 0;
@@ -206,12 +216,48 @@
         .gauge-label {
             font-size: 1.1em;
             color: #555;
-            /* === SỬA LỖI 1: Bỏ margin âm, thay bằng margin dương === */
-            margin-top: 10px; /* Bỏ: -30px, Thêm: 10px */
+            margin-top: 10px; 
         }
 
+        /* --- YÊU CẦU 3: Mục Biểu tượng màu (MỚI) --- */
+        .color-symbolism-section {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .color-meaning ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .color-meaning li {
+            margin-bottom: 15px;
+        }
+        .color-meaning .symbol-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .color-meaning .symbol-swatch {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+            flex-shrink: 0; /* Ngăn ô màu bị co lại */
+        }
+        .color-meaning strong {
+            display: inline; /* Bỏ display: block */
+            font-size: 1.1em;
+        }
+        .color-meaning p { /* Kiểu cho phần mô tả */
+            margin: 0 0 0 30px; /* Căn lề trái 30px (20px ô màu + 10px lề) */
+            padding: 0;
+            color: #555;
+        }
 
-        /* --- 5. In-depth Analysis --- */
+        /* --- 5. In-depth Analysis (Phần còn lại) --- */
         .in-depth-analysis {
             margin-top: 30px;
             background-color: #fff;
@@ -221,17 +267,6 @@
         }
         .analysis-section {
             margin-bottom: 25px;
-        }
-        .color-meaning ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .color-meaning li {
-            margin-bottom: 15px;
-        }
-        .color-meaning strong {
-            display: block; 
-            font-size: 1.1em;
         }
         
         /* Responsive Design */
@@ -271,38 +306,61 @@
         <header>
             <nav class="search-bar">
                 <div class="search-group">
-                    <label for="search-name">이름으로 검색</label> <input type="text" id="search-name" placeholder="예: 별이 빛나는 밤"> </div>
-                <div class="search-group">
-                    <label for="search-color">색상으로 검색</label> <select id="search-color">
-                        <option value="">--색상 선택--</option> <option value="blue">파란색</option> <option value="yellow">노란색</option> <option value="black">검은색</option> </select>
+                    <label for="search-name">이름으로 검색</label> 
+                    <input type="text" id="search-name" placeholder="예: 별이 빛나는 밤"> 
                 </div>
                 <div class="search-group">
-                    <label for="search-period">시기로 검색</label> <select id="search-period">
-                        <option value="">--시기 선택--</option> <option value="netherlands">네덜란드</option> <option value="paris">파리</option> <option value="south_france">남프랑스</option> </select>
+                    <label for="search-color">색상으로 검색</label> 
+                    <select id="search-color">
+                        <option value="">--색상 선택--</option> 
+                        <option value="blue">파란색</option> 
+                        <option value="yellow">노란색</option> 
+                        <option value="black">검은색</option> 
+                    </select>
+                </div>
+                <div class="search-group">
+                    <label for="search-period">시기로 검색</label> 
+                    <select id="search-period">
+                        <option value="">--시기 선택--</option> 
+                        <option value="netherlands">네덜란드</option> 
+                        <option value="paris">파리</option> 
+                        <option value="south_france">남프랑스</option> 
+                    </select>
                 </div>
             </nav>
         </header>
 
         <main>
             <section class="painting-gallery">
-                <button class="gallery-arrow prev" aria-label="이전 그림" onclick="alert('이전 그림 기능 (미설정)');">‹</button> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
-                     alt="빈센트 반 고흐의 별이 빛나는 밤"> <button class="gallery-arrow next" aria-label="다음 그림" onclick="alert('다음 그림 기능 (미설정)');">›</button> </section>
+                <button class="gallery-arrow prev" aria-label="이전 그림" onclick="alert('이전 그림 기능 (미설정)');">‹</button> 
+                
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
+                     alt="빈센트 반 고흐의 별이 빛나는 밤"> 
+
+                <button class="gallery-arrow next" aria-label="다음 그림" onclick="alert('다음 그림 기능 (미설정)');">›</button> 
+            </section>
 
             <section class="painting-info">
-                <h1>별이 빛나는 밤</h1> <p>
-                    빈센트 반 고흐, 1889 (남프랑스) <br> 73.7 cm × 92.1 cm | 캔버스에 유채 <br> 현재 소장: 뉴욕 현대 미술관 (MoMA), 미국 뉴욕 </p>
+                <h1>별이 빛나는 밤</h1> 
+                <p>
+                    빈센트 반 고흐, 1889 (남프랑스) <br> 
+                    73.7 cm × 92.1 cm | 캔버스에 유채 <br> 
+                    현재 소장: 뉴욕 현대 미술관 (MoMA), 미국 뉴욕 
+                </p>
             </section>
 
             <section class="data-grid">
 
                 <div class="data-column chart-wrapper">
-                    <h2>색상 분포</h2> <div class="chart-container">
+                    <h2>색상 분포</h2> 
+                    <div class="chart-container">
                         <canvas id="colorDonutChart"></canvas>
                     </div>
                 </div>
 
                 <div class="data-column palette-container">
-                    <h2>주요 팔레트</h2> <div class="palette-grid">
+                    <h2>주요 팔레트</h2> 
+                    <div class="palette-grid">
                         <div class="color-swatch">
                             <div class="swatch-box" style="background-color: #0a2e6c;"></div>
                             <code>#0a2e6c</code>
@@ -331,47 +389,113 @@
                 </div>
 
                 <div class="data-column emotion-gauge-container">
-                    <h2>작업 당시 기분</h2> <div class="gauge-chart-wrapper">
+                    <h2>작업 당시 기분</h2> 
+                    <div class="gauge-chart-wrapper">
                         <canvas id="emotionGaugeChart"></canvas>
                         <div class="gauge-score">2/10</div>
                     </div>
                     <div class="gauge-label">
-                        <p>기분: <strong>매우 낮음 (혼란 & 절망)</strong></p> <p>생폴드모솔 요양원 입원 중 정신적 위기 이후 작업됨.</p> </div>
+                        <p>기분: <strong>매우 낮음 (혼란 & 절망)</strong></p> 
+                        </div>
                 </div>
+            </section>
+
+            <section class="color-symbolism-section">
+                <article class="analysis-section color-meaning">
+                     <h2>색의 상징</h2> 
+                     <ul>
+                        <li>
+                            <div class="symbol-title">
+                                <span class="symbol-swatch" style="background-color: #0a2e6c;"></span>
+                                <strong>파란색 (울트라마린/프러시안)</strong> 
+                            </div>
+                            <p>하늘, 우주, 무한, 영성의 색. 하지만 동시에 요양원에서의 우울함과 고립을 상징하는 "차가운" 색입니다.</p> 
+                        </li>
+                        <li>
+                            <div class="symbol-title">
+                                <span class="symbol-swatch" style="background-color: #f9d700;"></span>
+                                <strong>노란색 (카드뮴/크롬)</strong> 
+                            </div>
+                            <p>별과 달의 색. 파란색의 해독제입니다. 생명, 희망, 신성한 에너지, 내면의 "불꽃"입니다. 별은 단순한 별이 아니라 희망의 "폭발"입니다.</p> 
+                        </li>
+                        <li>
+                            <div class="symbol-title">
+                                <span class="symbol-swatch" style="background-color: #0c1a2d;"></span>
+                                <strong>검은색 / 가장 어두운 파란색</strong> 
+                            </div>
+                            <p>사이프러스 나무와 윤곽선의 색. 죽음, 슬픔, 절망을 상징합니다. 하늘을 향해 뻗어가는 지상의 "어둠"입니다.</p> 
+                        </li>
+                        <li>
+                            <div class="symbol-title">
+                                <span class="symbol-swatch" style="background-color: #ffffff; border: 1px solid #eee;"></span>
+                                <strong>흰색</strong> 
+                            </div>
+                            <p>가장 밝은 하이라이트를 만드는 데 (주로 노란색과 혼합되어) 사용되었습니다. 순수한 빛, 에너지의 핵심을 상징하며 별을 "타오르게" 만듭니다.</p> 
+                        </li>
+                        <li>
+                            <div class="symbol-title">
+                                <span class="symbol-swatch" style="background-color: #b05f2a;"></span>
+                                <strong>갈색 / 주황색</strong> 
+                            </div>
+                            <p>마을 지붕의 색. 이것은 대지, 인류의 색입니다. 따뜻함, 안전, 평화를 상징하며, 위의 우주적 드라마와 극명한 대조를 이룹니다.</p> 
+                        </li>
+                    </ul>
+                </article>
             </section>
 
             <section class="in-depth-analysis">
                 <article class="analysis-section">
-                    <h2>그림 기법</h2> <h3>소용돌이치는 붓놀림</h3> <p>생레미 시기의 특징적인 기법입니다. 하늘, 언덕, 심지어 사이프러스 나무까지 강력하고 소용돌이치는 붓놀림으로 그려져, 움직이는 "에너지의 장"을 만듭니다.</p> <h3>임파스토</h3> <p>이 기법이 극도로 사용되었습니다. 물감을 튜브에서 바로 짠 것처럼 두껍게 칠했으며, 특히 별, 달, 소용돌이에 적용되어 실제 빛을 "잡아내는" 3D 질감을 줍니다.</p> <h3>자의적/표현적 색채</h3> <p>그는 본 것을 그린 것이 아니라 느낀 것을 그렸습니다. 하늘은 실제로 울트라마린이 아니며, 별은 카드뮴 옐로우로 "타오르지" 않습니다. 이것은 감정의 색입니다.</p> <h3>강한 윤곽선</h3> <p>사이프러스와 마을 집들은 어두운 파란색/검은색으로 윤곽선이 그려져 있습니다. 이는 자포니즘의 유산이지만, 여기서는 드라마를 만들고 형태를 분리하는 데 사용됩니다.</p> </article>
+                    <h2>그림 기법</h2> 
+                    <h3>소용돌이치는 붓놀림</h3> 
+                    <p>생레미 시기의 특징적인 기법입니다. 하늘, 언덕, 심지어 사이프러스 나무까지 강력하고 소용돌이치는 붓놀림으로 그려져, 움직이는 "에너지의 장"을 만듭니다.</p> 
+                    
+                    <h3>임파스토</h3> 
+                    <p>이 기법이 극도로 사용되었습니다. 물감을 튜브에서 바로 짠 것처럼 두껍게 칠했으며, 특히 별, 달, 소용돌이에 적용되어 실제 빛을 "잡아내는" 3D 질감을 줍니다.</p> 
+                    
+                    <h3>자의적/표현적 색채</h3> 
+                    <p>그는 본 것을 그린 것이 아니라 느낀 것을 그렸습니다. 하늘은 실제로 울트라마린이 아니며, 별은 카드뮴 옐로우로 "타오르지" 않습니다. 이것은 감정의 색입니다.</p> 
+                    
+                    <h3>강한 윤곽선</h3> 
+                    <p>사이프러스와 마을 집들은 어두운 파란색/검은색으로 윤곽선이 그려져 있습니다. 이는 자포니즘의 유산이지만, 여기서는 드라마를 만들고 형태를 분리하는 데 사용됩니다.</p> 
+                </article>
                 
                 <article class="analysis-section">
-                    <h2>그림의 의미</h2> <h3>요양원에서 바라본 풍경</h3> <p>이 그림은 생폴드모솔 요양원 병실 창문에서 해가 뜨기 전 동쪽을 바라본 풍경을 기반으로 하지만, 기억에 의존해 그려졌습니다.</p> <h3>세 가지 요소의 "대화"</h3> <p>이 그림은 세 부분 사이의 심리적 드라마입니다:</p> <ul>
-                        <li><strong>하늘 (우주/초자연):</strong> 가장 크고 혼돈스러운 부분. 이것은 우주의 춤이며, 감정과 영적 에너지의 "소용돌이"입니다. 별(특히 가장 밝은 금성)과 달(초승달과 태양이 비현실적으로 결합됨)은 희망 또는 신성한 힘의 "폭발"입니다.</li> <li><strong>마을 (평온/인간):</strong> 계곡에 자리 잡고 있습니다. 이 부분은 기억에서 가져온 것입니다(교회 첨탑은 프랑스가 아닌 그의 고향 네덜란드식입니다). 이것은 반 고흐가 갈망했던 평화, 공동체, 그리고 인간적인 따뜻함(불 켜진 창문)을 나타냅니다.</li> <li><strong>사이프러스 나무 (내면/죽음):</strong> 전경에 검은 불꽃처럼 솟아 있습니다. 프로방스의 사이프러스 나무는 종종 묘지와 죽음과 연관되었습니다. 반 고흐에게 이것은 자신의 내면적 혼란과 고통을 상징하며, 지상(삶)에서 하늘(영원/죽음)로 향하는 어두운 "다리"입니다.</li> </ul>
-                </article>
-
-                <article class="analysis-section">
-                    <h2>그림의 의도</h2> <h3>기술적 의도 (소용돌이치는 붓놀림)</h3> <p>의도는 사물이 아닌 "에너지"를 그리는 것이었습니다. 그는 "숨겨진 생명", 우주의 "진동"을 보여주고 싶었습니다. 세상은 정적이지 않고 살아있고 요동칩니다.</p> <h3>색채 의도 (자의적)</h3> <p>의도는 "표현"이었습니다. 그는 무한함과 우울함을 느꼈기 때문에 파란색을 사용했습니다. 그는 희망과 신성한 에너지를 느꼈기 때문에 노란색을 사용했습니다.</p> <h3>대비</h3> <p>핵심 의도는 극적인 대비였습니다:</p> <ul>
-                        <li><strong>하늘 (혼돈, 초자연) vs. 마을 (고요, 인간):</strong> 신/우주의 세계 대 잠자는 인류의 세계.</li> <li><strong>사이프러스 (어둠, 고투) vs. 하늘 (밝음, 영원):</strong> 신성한 빛을 갈망하는 그의 지상 고통.</li> </ul>
-                </article>
-
-                <article class="analysis-section">
-                    <h2>반 고흐의 심리</h2> <p>반 고흐는 극심하고 혼란스러운 감정 상태에 있었습니다. 그는 심각한 정신 붕괴를 겪은 직후였습니다. 그는 고립되었습니다. 이 그림은 광기 속에서 만들어진 것이 아니라, 그의 격동적인 감정, 두려움, 영적 갈망을 예술로 "승화"시키려는 시도였습니다.</p> <p>혼돈에도 불구하고, 많은 사람들은 이 그림을 위로의 그림으로 봅니다. 반 고흐는 구원을 찾고 있었지만, (그가 작게 그린) 교회가 아니라 (하늘이라는) 자연의 거대하고 압도적인 힘에서 찾고 있었습니다.</p> </article>
-                
-                <article class="analysis-section color-meaning">
-                     <h2>색의 상징</h2> <ul>
-                        <li>
-                            <strong>파란색 (울트라마린/프러시안)</strong> 하늘, 우주, 무한, 영성의 색. 하지만 동시에 요양원에서의 우울함과 고립을 상징하는 "차가운" 색입니다. </li>
-                        <li>
-                            <strong>노란색 (카드뮴/크롬)</strong> 별과 달의 색. 파란색의 해독제입니다. 생명, 희망, 신성한 에너지, 내면의 "불꽃"입니다. 별은 단순한 별이 아니라 희망의 "폭발"입니다. </li>
-                        <li>
-                            <strong>검은색 / 가장 어두운 파란색</strong> 사이프러스 나무와 윤곽선의 색. 죽음, 슬픔, 절망을 상징합니다. 하늘을 향해 뻗어가는 지상의 "어둠"입니다. </li>
-                        <li>
-                            <strong>흰색</strong> 가장 밝은 하이라이트를 만드는 데 (주로 노란색과 혼합되어) 사용되었습니다. 순수한 빛, 에너지의 핵심을 상징하며 별을 "타오르게" 만듭니다. </li>
-                        <li>
-                            <strong>갈색 / 주황색</strong> 마을 지붕의 색. 이것은 대지, 인류의 색입니다. 따뜻함, 안전, 평화를 상징하며, 위의 우주적 드라마와 극명한 대조를 이룹니다. </li>
+                    <h2>그림의 의미</h2> 
+                    <h3>요양원에서 바라본 풍경</h3> 
+                    <p>이 그림은 생폴드모솔 요양원 병실 창문에서 해가 뜨기 전 동쪽을 바라본 풍경을 기반으로 하지만, 기억에 의존해 그려졌습니다.</p> 
+                    
+                    <h3>세 가지 요소의 "대화"</h3> 
+                    <p>이 그림은 세 부분 사이의 심리적 드라마입니다:</p> 
+                    <ul>
+                        <li><strong>하늘 (우주/초자연):</strong> 가장 크고 혼돈스러운 부분. 이것은 우주의 춤이며, 감정과 영적 에너지의 "소용돌이"입니다. 별(특히 가장 밝은 금성)과 달(초승달과 태양이 비현실적으로 결합됨)은 희망 또는 신성한 힘의 "폭발"입니다.</li> 
+                        <li><strong>마을 (평온/인간):</strong> 계곡에 자리 잡고 있습니다. 이 부분은 기억에서 가져온 것입니다(교회 첨탑은 프랑스가 아닌 그의 고향 네덜란드식입니다). 이것은 반 고흐가 갈망했던 평화, 공동체, 그리고 인간적인 따뜻함(불 켜진 창문)을 나타냅니다.</li> 
+                        <li><strong>사이프러스 나무 (내면/죽음):</strong> 전경에 검은 불꽃처럼 솟아 있습니다. 프로방스의 사이프러스 나무는 종종 묘지와 죽음과 연관되었습니다. 반 고흐에게 이것은 자신의 내면적 혼란과 고통을 상징하며, 지상(삶)에서 하늘(영원/죽음)로 향하는 어두운 "다리"입니다.</li> 
                     </ul>
                 </article>
-            </section>
+
+                <article class="analysis-section">
+                    <h2>그림의 의도</h2> 
+                    <h3>기술적 의도 (소용돌이치는 붓놀림)</h3> 
+                    <p>의도는 사물이 아닌 "에너지"를 그리는 것이었습니다. 그는 "숨겨진 생명", 우주의 "진동"을 보여주고 싶었습니다. 세상은 정적이지 않고 살아있고 요동칩니다.</p> 
+                    
+                    <h3>색채 의도 (자의적)</h3> 
+                    <p>의도는 "표현"이었습니다. 그는 무한함과 우울함을 느꼈기 때문에 파란색을 사용했습니다. 그는 희망과 신성한 에너지를 느꼈기 때문에 노란색을 사용했습니다.</p> 
+                    
+                    <h3>대비</h3> 
+                    <p>핵심 의도는 극적인 대비였습니다:</p> 
+                    <ul>
+                        <li><strong>하늘 (혼돈, 초자연) vs. 마을 (고요, 인간):</strong> 신/우주의 세계 대 잠자는 인류의 세계.</li> 
+                        <li><strong>사이프러스 (어둠, 고투) vs. 하늘 (밝음, 영원):</strong> 신성한 빛을 갈망하는 그의 지상 고통.</li> 
+                    </ul>
+                </article>
+
+                <article class="analysis-section">
+                    <h2>반 고흐의 심리</h2> 
+                    <p>반 고흐는 극심하고 혼란스러운 감정 상태에 있었습니다. 그는 심각한 정신 붕괴를 겪은 직후였습니다. 그는 고립되었습니다. 이 그림은 광기 속에서 만들어진 것이 아니라, 그의 격동적인 감정, 두려움, 영적 갈망을 예술로 "승화"시키려는 시도였습니다.</p> 
+                    <p>혼돈에도 불구하고, 많은 사람들은 이 그림을 위로의 그림으로 봅니다. 반 고흐는 구원을 찾고 있었지만, (그가 작게 그린) 교회가 아니라 (하늘이라는) 자연의 거대하고 압도적인 힘에서 찾고 있었습니다.</p> 
+                </article>
+                
+                </section>
         </main>
     </div>
 
@@ -380,7 +504,7 @@
             
             // --- Biểu đồ 1: Phân bổ màu sắc (Donut) ---
             const colorData = {
-                labels: [ // Dịch
+                labels: [ 
                     '파란색 (~40%)',
                     '검은색 / 어두운 파란색 (~20%)',
                     '노란색 (~15%)',
@@ -388,7 +512,7 @@
                     '갈색 / 주황색 (~10%)'
                 ],
                 datasets: [{
-                    label: '색상 분포', // Dịch
+                    label: '색상 분포', 
                     data: [40, 20, 15, 15, 10], 
                     backgroundColor: [
                         '#0a2e6c', 
@@ -404,7 +528,7 @@
 
             const ctxColor = document.getElementById('colorDonutChart');
             if (ctxColor) {
-                const colorDonutChart = new Chart(ctxColor.getContext('2d'), {
+                const colorDonutChart = new Chart(ctxColor.getContext('d'), {
                     type: 'doughnut', 
                     data: colorData,
                     options: {
@@ -428,7 +552,7 @@
             const maxScore = 10;
 
             const gaugeData = {
-                labels: ['기분', '남음'], // Dịch
+                labels: ['기분', '남음'], 
                 datasets: [{
                     data: [moodScore, maxScore - moodScore], 
                     backgroundColor: [
@@ -442,7 +566,7 @@
 
             const ctxGauge = document.getElementById('emotionGaugeChart');
             if (ctxGauge) {
-                const emotionGaugeChart = new Chart(ctxGauge.getContext('2d'), {
+                const emotionGaugeChart = new Chart(ctxGauge.getContext('d'), {
                     type: 'doughnut',
                     data: gaugeData,
                     options: {
