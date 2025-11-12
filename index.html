@@ -171,7 +171,7 @@
             line-height: 1.5; 
         }
 
-        /* --- 4. 데이터 분석 그리드 (3단) (ĐÃ SỬA) --- */
+        /* --- 4. 데이터 분석 그리드 (3단) --- */
         .data-grid {
             display: flex;
             justify-content: space-between;
@@ -186,8 +186,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            /* === YÊU CẦU 3: Tăng chiều cao tổng thể của cột === */
-            height: 550px; /* Tăng từ 520px lên 550px */
+            height: 550px; 
             box-sizing: border-box; 
             display: flex;
             flex-direction: column;
@@ -206,7 +205,7 @@
             margin-bottom: 15px; 
         }
 
-        /* 2열: 색상 팔레트 (ĐÃ SỬA) */
+        /* 2열: 색상 팔레트 */
         .palette-container {
             text-align: center;
             flex-grow: 1; 
@@ -250,7 +249,7 @@
             border-radius: 3px;
         }
         
-        /* Mục Màu Bổ túc (ĐÃ SỬA) */
+        /* Mục Màu Bổ túc */
         .complementary-contrast {
             margin-top: 25px; 
             text-align: left;
@@ -259,7 +258,7 @@
             margin-bottom: 10px; 
         }
         .complementary-contrast h4 {
-            font-size: 1.0em; /* Giữ kích thước nhỏ */
+            font-size: 1.0em; 
             font-weight: 600;
             color: #333;
             margin-top: 0;
@@ -276,46 +275,55 @@
             flex: 1; 
         }
         .complementary-contrast p {
-            font-size: 0.85em; /* Giữ kích thước nhỏ để vừa */
+            font-size: 0.85em; 
             color: #555;
             line-height: 1.4; 
             margin: 0; 
-            text-align: justify; /* Căn đều 2 bên cho đẹp */
+            text-align: justify; 
         }
-        /* ============================================== */
-
-        /* 3열: 감정 게이지 (ĐÃ SỬA) */
+        
+        /* === 3열: 감정 게이지 (ĐÃ SỬA) === */
         .emotion-gauge-container {
             position: relative; 
             text-align: center;
             flex-grow: 1; 
             display: flex; 
             flex-direction: column; 
-            justify-content: space-between; 
+            justify-content: center; /* Căn giữa toàn bộ khối */
+            align-items: center; /* Căn ngang */
         }
         .gauge-chart-wrapper {
             position: relative;
-            flex-grow: 1; 
-            margin-top: 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+            width: 90%; /* Chiếm 90% chiều rộng cột */
+            max-width: 270px; /* Giới hạn chiều rộng tối đa */
+            height: 135px; /* Luôn bằng 1/2 chiều rộng */
+            margin-bottom: 15px; /* Khoảng cách dưới đồng hồ */
         }
+        
+        /* === YÊU CẦU 2.1: Emoji Mới === */
+        .gauge-emoji {
+            font-size: 30px; /* Kích thước 30px */
+            line-height: 1;
+            margin-bottom: 15px; /* Khoảng cách dưới emoji */
+        }
+
+        /* === YÊU CẦU 2.2: Điểm số (Sửa lại) === */
         .gauge-score {
-            position: absolute;
-            top: 70%; 
-            left: 50%;
-            transform: translateX(-50%);
+            /* Đã xoá position: absolute */
             font-size: 3.2em; 
             font-weight: bold;
             color: #d9534f; 
+            line-height: 1; /* Đảm bảo không chiếm nhiều chiều cao */
         }
+
+        /* === YÊU CẦU 2.3: Nhãn (Sửa lại) === */
         .gauge-label {
             font-size: 1.0em; 
             color: #555;
-            margin-top: 15px; 
-            margin-bottom: 10px; 
+            margin-top: 15px; /* Khoảng cách trên nhãn */
         }
+        /* ================================== */
+
 
         /* --- Mục Phân tích Thời kỳ --- */
         .period-analysis-section {
@@ -609,15 +617,20 @@
 
                 <div class="data-column emotion-gauge-container">
                     <h2>작업 당시 기분</h2> 
+                    
                     <div class="gauge-chart-wrapper">
                         <canvas id="emotionGaugeChart"></canvas>
-                        <div class="gauge-score">2/10</div>
                     </div>
+                    
+                    <div class="gauge-emoji">😵‍💫</div>
+                    
+                    <div class="gauge-score">2/10</div>
+                    
                     <div class="gauge-label">
                         <p>기분: <strong>매우 낮음 (혼란 & 절망)</strong></p> 
                     </div>
                 </div>
-            </section>
+                </section>
 
             <section class="period-analysis-section">
                 <div class="period-content">
@@ -827,7 +840,7 @@
 
             const ctxColor = document.getElementById('colorDonutChart');
             if (ctxColor) {
-                // === SỬA LỖI 1 & 2: Đảm bảo '2d' là chính xác ===
+                // === ĐÃ SỬA LỖI: getContext('2d') ===
                 const colorDonutChart = new Chart(ctxColor.getContext('2d'), {
                     type: 'doughnut', 
                     data: colorData,
@@ -887,13 +900,13 @@
 
             const ctxGauge = document.getElementById('emotionGaugeChart');
             if (ctxGauge) {
-                // === SỬA LỖI 1 & 2: Đảm bảo '2d' là chính xác ===
+                // === ĐÃ SỬA LỖI: getContext('2d') ===
                 const emotionGaugeChart = new Chart(ctxGauge.getContext('2d'), {
                     type: 'doughnut',
                     data: gaugeData,
                     options: {
                         responsive: true,
-                        maintainAspectRatio: false,
+                        maintainAspectRatio: true, // Giữ tỉ lệ cho đồng hồ
                         rotation: -90,      
                         circumference: 180, 
                         cutout: '70%',      
