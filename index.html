@@ -188,7 +188,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             height: 550px; 
             box-sizing: border-box; 
-            /* === YÊU CẦU 1: Áp dụng flex và space-between cho TẤT CẢ các cột === */
             display: flex;
             flex-direction: column;
             justify-content: space-between; 
@@ -197,20 +196,20 @@
         .data-column h2 {
             text-align: center;
             margin-bottom: 15px; 
-            flex-shrink: 0; /* Đảm bảo tiêu đề không bị co lại */
+            flex-shrink: 0; 
         }
         
         /* 1열: 도넛 차트 */
         .chart-container {
             position: relative;
-            flex-grow: 1; /* Cho phép biểu đồ chiếm không gian giữa */
-            display: flex; /* Căn giữa canvas bên trong */
+            flex-grow: 1; 
+            display: flex; 
             align-items: center;
             justify-content: center;
             margin-bottom: 15px; 
         }
         .chart-container canvas {
-            max-height: 350px; /* Giới hạn chiều cao tối đa của donut */
+            max-height: 350px; 
         }
 
         /* 2열: 색상 팔레트 */
@@ -291,36 +290,38 @@
         }
         
         /* === 3열: 감정 게이지 (ĐÃ SỬA) === */
-        /* Bỏ class .emotion-gauge-container khỏi .data-column, chỉ cần style chung */
         
         /* Wrapper mới cho nội dung giữa (Đồng hồ, Emoji, Điểm) */
         .gauge-center-content {
-            flex-grow: 1; /* Chiếm không gian giữa */
+            flex-grow: 1; 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Căn giữa nội dung này */
+            justify-content: center; 
             align-items: center;
             text-align: center;
             margin-top: 15px;
             margin-bottom: 15px;
         }
 
-        /* === YÊU CẦU 2.1: Đồng hồ (Phóng to) === */
+        /* Đồng hồ */
         .gauge-chart-wrapper {
             position: relative;
-            width: 90%; /* Chiếm 90% */
-            max-width: 270px; /* Giới hạn tối đa */
-            margin-bottom: 15px; /* Khoảng cách dưới đồng hồ */
+            width: 90%; 
+            max-width: 270px; 
+            /* === YÊU CẦU 1: Giảm khoảng cách (15px -> 5px) === */
+            margin-bottom: 5px; 
         }
         
-        /* === YÊU CẦU 2.2: Emoji Mới === */
+        /* Emoji */
         .gauge-emoji {
-            font-size: 30px; /* Kích thước 30px */
+            /* === YÊU CẦU 2: Tăng kích thước (30px -> 60px) === */
+            font-size: 60px; 
             line-height: 1;
-            margin-bottom: 15px; /* Khoảng cách dưới emoji */
+            /* Giảm khoảng cách dưới emoji một chút */
+            margin-bottom: 10px; 
         }
 
-        /* === YÊU CẦU 2.3: Điểm số (Sửa lại) === */
+        /* Điểm số */
         .gauge-score {
             font-size: 3.2em; 
             font-weight: bold;
@@ -328,14 +329,15 @@
             line-height: 1; 
         }
 
-        /* === YÊU CẦU 2.4: Nhãn (Sửa lại) === */
+        /* Nhãn */
         .gauge-label {
+            /* === YÊU CẦU 3: Giảm khoảng cách (15px -> 5px) === */
+            margin-top: 5px; 
             font-size: 1.0em; 
             color: #555;
-            margin-top: 15px; 
-            margin-bottom: 10px; /* Đẩy lên khỏi đáy 1 chút */
+            margin-bottom: 10px; 
             text-align: center;
-            flex-shrink: 0; /* Đảm bảo nhãn không bị co */
+            flex-shrink: 0; 
         }
         /* ================================== */
 
@@ -630,16 +632,15 @@
                 </div>
 
 
-                <div class="data-column"> <h2>작업 당시 기분</h2> 
+                <div class="data-column"> 
+                    <h2>작업 당시 기분</h2> 
                     
                     <div class="gauge-center-content">
                         <div class="gauge-chart-wrapper">
                             <canvas id="emotionGaugeChart"></canvas>
                         </div>
                         
-                        <div class="gauge-emoji">😵‍💫</div>
-                        
-                        <div class="gauge-score">2/10</div>
+                        <div class="gauge-emoji">😞</div> <div class="gauge-score">2/10</div>
                     </div>
                     
                     <div class="gauge-label">
