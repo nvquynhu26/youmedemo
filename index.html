@@ -143,10 +143,10 @@
             right: 15px;
         }
 
-        /* --- 3. 그림 정보 (ĐÃ SỬA) --- */
+        /* --- 3. 그림 정보 --- */
         .painting-info {
             text-align: center;
-            font-size: 1.1em; /* Giữ base size cho h1 */
+            font-size: 1.1em; 
             font-style: italic;
             color: #555;
             margin: 20px 0;
@@ -157,23 +157,21 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* === YÊU CẦU 1.2: Chiều cao 3/4 (180px -> 135px) === */
             min-height: 135px; 
             box-sizing: border-box;
         }
         .painting-info h1 {
             margin-top: 0;
             margin-bottom: 15px; 
-            font-style: normal; /* Tên tranh không cần nghiêng */
+            font-style: normal; 
         }
-        /* === YÊU CẦU 1.1: Font chữ 2/3 === */
         .painting-info p {
             margin: 0;
-            font-size: 0.75em; /* 1.1em * 2/3 = 0.73 -> 0.75em */
-            line-height: 1.5; /* Giãn dòng cho dễ đọc */
+            font-size: 0.75em; 
+            line-height: 1.5; 
         }
 
-        /* --- 4. 데이터 분석 그리드 (3단) --- */
+        /* --- 4. 데이터 분석 그리드 (3단) (ĐÃ SỬA) --- */
         .data-grid {
             display: flex;
             justify-content: space-between;
@@ -188,32 +186,44 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            height: 450px; 
+            /* === YÊU CẦU: Tăng chiều cao tổng thể của cột === */
+            height: 520px; /* Tăng chiều cao để có thêm không gian */
             box-sizing: border-box; 
+            /* === YÊU CẦU: Căn chỉnh nội dung bên trong cột === */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Phân bổ không gian đều giữa các phần */
         }
         
         .data-column h2 {
             text-align: center;
+            margin-bottom: 15px; /* Thêm margin-bottom để có khoảng trống với nội dung */
         }
         
         /* 1열: 도넛 차트 */
         .chart-container {
             position: relative;
-            height: 350px; 
+            /* Điều chỉnh chiều cao để cân đối với cột mới */
+            flex-grow: 1; /* Cho phép biểu đồ mở rộng để chiếm không gian trống */
+            margin-bottom: 15px; /* Khoảng trống với legend nếu cần */
         }
 
         /* 2열: 색상 팔레트 (ĐÃ SỬA) */
         .palette-container {
             text-align: center;
+            flex-grow: 1; /* Cho phép mở rộng */
+            display: flex; /* Bật flexbox cho container bên trong */
+            flex-direction: column; /* Xếp chồng các thành phần */
+            justify-content: space-between; /* Phân bổ không gian */
         }
         .palette-grid { 
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
-            /* === YÊU CẦU 2.2: Giảm gap (15px -> 10px) === */
             gap: 10px; 
-            margin-top: 20px;
+            margin-top: 20px; /* Vẫn giữ margin top cho grid */
             padding: 0 20px;
             box-sizing: border-box;
+            flex-shrink: 0; /* Không cho grid bị co lại */
         }
         .color-swatch {
             text-align: center;
@@ -221,15 +231,14 @@
         }
         .color-swatch.main-palette {
             grid-column: 1 / -1; 
-            margin-bottom: 0px; /* Bỏ margin-bottom, dùng gap */
+            margin-bottom: 0px; 
         }
-        /* === YÊU CẦU 2.1: Chiều cao 3/4 (80px -> 60px) === */
+        /* === YÊU CẦU: Điều chỉnh chiều cao ô màu === */
         .color-swatch.main-palette .swatch-box {
-            height: 60px; 
+            height: 68px; /* Tăng nhẹ từ 60px để cân đối */
         }
-        /* === YÊU CẦU 2.1: Chiều cao 3/4 (54px -> 41px) === */
         .color-swatch.secondary-palette .swatch-box {
-            height: 41px; 
+            height: 48px; /* Tăng nhẹ từ 41px để cân đối */
         }
         .swatch-box { 
             width: 100%;
@@ -246,61 +255,70 @@
         
         /* Mục Màu Bổ túc (ĐÃ SỬA) */
         .complementary-contrast {
-            /* === YÊU CẦU 2.3: Giảm margin (25px -> 20px) === */
-            margin-top: 20px; 
+            margin-top: 25px; /* Tăng nhẹ khoảng cách với palette grid */
             text-align: left;
             padding: 0 20px;
+            flex-shrink: 0; /* Không cho phần này bị co lại */
+            margin-bottom: 10px; /* Khoảng trống cuối cùng */
         }
-        /* === YÊU CẦU 2.3: Chữ nhỏ lại (1.1em -> 1.0em) === */
         .complementary-contrast h4 {
-            font-size: 1.0em;
+            font-size: 1.05em; /* Tăng nhẹ font size */
             font-weight: 600;
             color: #333;
             margin-top: 0;
-            margin-bottom: 8px; /* Giảm (10px -> 8px) */
+            margin-bottom: 10px; /* Tăng nhẹ margin-bottom */
             text-align: center;
         }
         .complementary-contrast .contrast-swatches {
             display: flex;
             gap: 10px;
-            margin-bottom: 8px; /* Giảm (10px -> 8px) */
+            margin-bottom: 10px; /* Tăng nhẹ margin-bottom */
         }
-        /* === YÊU CẦU 2.3: Ô màu nhỏ lại (40px -> 30px) === */
         .complementary-contrast .contrast-swatches .swatch-box {
-            height: 30px; 
+            height: 35px; /* Tăng nhẹ từ 30px */
             flex: 1; 
         }
-        /* === YÊU CẦU 2.3: Chữ nhỏ lại (0.9em -> 0.85em) === */
         .complementary-contrast p {
-            font-size: 0.85em;
+            font-size: 0.88em; /* Tăng nhẹ font size */
             color: #555;
-            line-height: 1.4; /* Giảm line-height */
-            margin: 0; /* Xoá margin */
+            line-height: 1.45; /* Tăng nhẹ line-height */
+            margin: 0; 
+            text-align: justify; /* Căn đều 2 bên cho đẹp */
         }
         /* ============================================== */
 
-        /* 3열: 감정 게이지 */
+        /* 3열: 감정 게이지 (ĐÃ SỬA) */
         .emotion-gauge-container {
             position: relative; 
             text-align: center;
+            flex-grow: 1; /* Cho phép mở rộng */
+            display: flex; /* Bật flexbox cho container bên trong */
+            flex-direction: column; /* Xếp chồng các thành phần */
+            justify-content: space-between; /* Phân bổ không gian */
         }
         .gauge-chart-wrapper {
             position: relative;
-            height: 300px;
+            /* Điều chỉnh chiều cao để cân đối */
+            flex-grow: 1; /* Cho phép biểu đồ mở rộng */
+            margin-top: 10px; /* Đẩy xuống một chút */
+            display: flex; /* Thêm flex để căn giữa score */
+            align-items: center; /* Căn giữa dọc */
+            justify-content: center; /* Căn giữa ngang */
         }
         .gauge-score {
             position: absolute;
-            top: 75%; 
+            top: 70%; /* Điều chỉnh lại vị trí để cân đối hơn */
             left: 50%;
             transform: translateX(-50%);
-            font-size: 3em;
+            font-size: 3.2em; /* Tăng nhẹ font size */
             font-weight: bold;
             color: #d9534f; 
         }
         .gauge-label {
-            font-size: 1.1em;
+            font-size: 1.0em; /* Tăng font size */
             color: #555;
-            margin-top: 10px; 
+            margin-top: 15px; /* Khoảng cách với gauge */
+            margin-bottom: 10px; /* Khoảng cách với đáy cột */
         }
 
         /* --- Mục Phân tích Thời kỳ --- */
@@ -467,7 +485,10 @@
             }
             .data-column {
                 flex-basis: 100%; 
-                height: auto; 
+                height: auto; /* Để chiều cao tự điều chỉnh trên màn hình nhỏ */
+            }
+            .palette-container, .emotion-gauge-container {
+                height: auto; /* Reset chiều cao cố định */
             }
         }
         @media (max-width: 768px) {
@@ -659,245 +680,4 @@
                                 <span class="symbol-swatch" style="background-color: #0a2e6c;"></span>
                                 <strong>파란색 (울트라마린/프러시안)</strong> 
                             </div>
-                            <p>하늘, 우주, 무한, 영성의 색. 하지만 동시에 요양원에서의 우울함과 고립을 상징하는 "차가운" 색입니다.</p> 
-                        </li>
-                        <li>
-                            <div class="symbol-title">
-                                <span class="symbol-swatch" style="background-color: #f9d700;"></span>
-                                <strong>노란색 (카드뮴/크롬)</strong> 
-                            </div>
-                            <p>별과 달의 색. 파란색의 해독제입니다. 생명, 희망, 신성한 에너지, 내면의 "불꽃"입니다. 별은 단순한 별이 아니라 희망의 "폭발"입니다.</p> 
-                        </li>
-                        <li>
-                            <div class="symbol-title">
-                                <span class="symbol-swatch" style="background-color: #0c1a2d;"></span>
-                                <strong>검은색 / 가장 어두운 파란색</strong> 
-                            </div>
-                            <p>사이프러스 나무와 윤곽선의 색. 죽음, 슬픔, 절망을 상징합니다. 하늘을 향해 뻗어가는 지상의 "어둠"입니다.</p> 
-                        </li>
-                        <li>
-                            <div class="symbol-title">
-                                <span class="symbol-swatch" style="background-color: #ffffff; border: 1px solid #eee;"></span>
-                                <strong>흰색</strong> 
-                            </div>
-                            <p>가장 밝은 하이라이트를 만드는 데 (주로 노란색과 혼합되어) 사용되었습니다. 순수한 빛, 에너지의 핵심을 상징하며 별을 "타오르게" 만듭니다.</p> 
-                        </li>
-                        <li>
-                            <div class="symbol-title">
-                                <span class="symbol-swatch" style="background-color: #b05f2a;"></span>
-                                <strong>갈색 / 주황색</strong> 
-                            </div>
-                            <p>마을 지붕의 색. 이것은 대지, 인류의 색입니다. 따뜻함, 안전, 평화를 상징하며, 위의 우주적 드라마와 극명한 대조를 이룹니다.</p> 
-                        </li>
-                    </ul>
-                </article>
-            </section>
-
-            <section class="in-depth-analysis">
-                <article class="analysis-section">
-                    <h2>그림 기법</h2> 
-                    <h3>소용돌이치는 붓놀림</h3> 
-                    <p>생레미 시기의 특징적인 기법입니다. 하늘, 언덕, 심지어 사이프러스 나무까지 강력하고 소용돌이치는 붓놀림으로 그려져, 움직이는 "에너지의 장"을 만듭니다.</p> 
-                    
-                    <h3>임파스토</h3> 
-                    <p>이 기법이 극도로 사용되었습니다. 물감을 튜브에서 바로 짠 것처럼 두껍게 칠했으며, 특히 별, 달, 소용돌이에 적용되어 실제 빛을 "잡아내는" 3D 질감을 줍니다.</p> 
-                    
-                    <h3>자의적/표현적 색채</h3> 
-                    <p>그는 본 것을 그린 것이 아니라 느낀 것을 그렸습니다. 하늘은 실제로 울트라마린이 아니며, 별은 카드뮴 옐로우로 "타오르지" 않습니다. 이것은 감정의 색입니다.</p> 
-                    
-                    <h3>강한 윤곽선</h3> 
-                    <p>사이프러스와 마을 집들은 어두운 파란색/검은색으로 윤곽선이 그려져 있습니다. 이는 자포니즘의 유산이지만, 여기서는 드라마를 만들고 형태를 분리하는 데 사용됩니다.</p> 
-                </article>
-                
-                <article class="analysis-section">
-                    <h2>그림의 의미</h2> 
-                    <h3>요양원에서 바라본 풍경</h3> 
-                    <p>이 그림은 생폴드모솔 요양원 병실 창문에서 해가 뜨기 전 동쪽을 바라본 풍경을 기반으로 하지만, 기억에 의존해 그려졌습니다.</p> 
-                    
-                    <h3>세 가지 요소의 "대화"</h3> 
-                    <p>이 그림은 세 부분 사이의 심리적 드라마입니다:</p> 
-                    <ul>
-                        <li><strong>하늘 (우주/초자연):</strong> 가장 크고 혼돈스러운 부분. 이것은 우주의 춤이며, 감정과 영적 에너지의 "소용돌이"입니다. 별(특히 가장 밝은 금성)과 달(초승달과 태양이 비현실적으로 결합됨)은 희망 또는 신성한 힘의 "폭발"입니다.</li> 
-                        <li><strong>마을 (평온/인간):</strong> 계곡에 자리 잡고 있습니다. 이 부분은 기억에서 가져온 것입니다(교회 첨탑은 프랑스가 아닌 그의 고향 네덜란드식입니다). 이것은 반 고흐가 갈망했던 평화, 공동체, 그리고 인간적인 따뜻함(불 켜진 창문)을 나타냅니다.</li> 
-                        <li><strong>사이프러스 나무 (내면/죽음):</strong> 전경에 검은 불꽃처럼 솟아 있습니다. 프로방스의 사이프러스 나무는 종종 묘지와 죽음과 연관되었습니다. 반 고흐에게 이것은 자신의 내면적 혼란과 고통을 상징하며, 지상(삶)에서 하늘(영원/죽음)로 향하는 어두운 "다리"입니다.</li> 
-                    </ul>
-                </article>
-
-                <article class="analysis-section">
-                    <h2>그림의 의도</h2> 
-                    <h3>기술적 의도 (소용돌이치는 붓놀림)</h3> 
-                    <p>의도는 사물이 아닌 "에너지"를 그리는 것이었습니다. 그는 "숨겨진 생명", 우주의 "진동"을 보여주고 싶었습니다. 세상은 정적이지 않고 살아있고 요동칩니다.</p> 
-                    
-                    <h3>색채 의도 (자의적)</h3> 
-                    <p>의도는 "표현"이었습니다. 그는 무한함과 우울함을 느꼈기 때문에 파란색을 사용했습니다. 그는 희망과 신성한 에너지를 느꼈기 때문에 노란색을 사용했습니다.</p> 
-                    
-                    <h3>대비</h3> 
-                    <p>핵심 의도는 극적인 대비였습니다:</p> 
-                    <ul>
-                        <li><strong>하늘 (혼돈, 초자연) vs. 마을 (고요, 인간):</strong> 신/우주의 세계 대 잠자는 인류의 세계.</li> 
-                        <li><strong>사이프러스 (어둠, 고투) vs. 하늘 (밝음, 영원):</strong> 신성한 빛을 갈망하는 그의 지상 고통.</li> 
-                    </ul>
-                </article>
-
-                <article class="analysis-section">
-                    <h2>반 고흐의 심리</h2> 
-                    <p>반 고흐는 극심하고 혼란스러운 감정 상태에 있었습니다. 그는 심각한 정신 붕괴를 겪은 직후였습니다. 그는 고립되었습니다. 이 그림은 광기 속에서 만들어진 것이 아니라, 그의 격동적인 감정, 두려움, 영적 갈망을 예술로 "승화"시키려는 시도였습니다.</p> 
-                    <p>혼돈에도 불구하고, 많은 사람들은 이 그림을 위로의 그림으로 봅니다. 반 고흐는 구원을 찾고 있었지만, (그가 작게 그린) 교회가 아니라 (하늘이라는) 자연의 거대하고 압도적인 힘에서 찾고 있었습니다.</p>
-                </article>
-                
-            </section>
-        </main>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // --- TÍNH NĂNG 1: JavaScript cho Hiệu ứng Hover ---
-            const mainPainting = document.getElementById('main-painting-image');
-
-            // Định nghĩa các cặp ID swatch và lớp highlight
-            const highlightMap = {
-                'palette-blue': 'highlight-blue',
-                'palette-black': 'highlight-black',
-                'palette-yellow': 'highlight-yellow',
-                'palette-white': 'highlight-white',
-                'palette-brown': 'highlight-brown'
-            };
-
-            // Hàm để reset tất cả highlight
-            function resetHighlights() {
-                if (mainPainting) {
-                    mainPainting.className = ''; // Xoá hết các lớp highlight
-                }
-            }
-
-            // Gán event listener cho từng swatch trong PALETTE
-            for (const swatchId in highlightMap) {
-                const swatch = document.getElementById(swatchId);
-                const highlightClass = highlightMap[swatchId];
-                
-                if (swatch && mainPainting) {
-                    swatch.addEventListener('mouseover', () => {
-                        mainPainting.classList.add(highlightClass);
-                    });
-                    
-                    // Reset khi rời khỏi swatch
-                    swatch.addEventListener('mouseout', () => {
-                        resetHighlights();
-                    });
-                }
-            }
-            
-            // --- Kết thúc JavaScript cho Hiệu ứng Hover ---
-
-
-            // --- 차트 1: 색상 분포 (도넛) ---
-            const colorData = {
-                labels: [ 
-                    '파란색 (~40%)',
-                    '검은색 / 어두운 파란색 (~20%)',
-                    '노란색 (~15%)',
-                    '흰색 (~15%)',
-                    '갈색 / 주황색 (~10%)'
-                ],
-                datasets: [{
-                    label: '색상 분포', 
-                    data: [40, 20, 15, 15, 10], 
-                    backgroundColor: [
-                        '#0a2e6c', 
-                        '#0c1a2d', 
-                        '#f9d700', 
-                        '#f0f0f0', 
-                        '#b05f2a'  
-                    ],
-                    borderColor: '#fff',
-                    borderWidth: 2
-                }]
-            };
-
-            const ctxColor = document.getElementById('colorDonutChart');
-            if (ctxColor) {
-                const colorDonutChart = new Chart(ctxColor.getContext('2d'), {
-                    type: 'doughnut', 
-                    data: colorData,
-                    options: {
-                        responsive: true, 
-                        maintainAspectRatio: false,
-                        onHover: (event, chartElement) => {
-                            resetHighlights(); 
-                            if (chartElement.length > 0 && mainPainting) {
-                                const index = chartElement[0].index;
-                                let highlightClass = '';
-                                switch(index) {
-                                    case 0: highlightClass = 'highlight-blue'; break;
-                                    case 1: highlightClass = 'highlight-black'; break;
-                                    case 2: highlightClass = 'highlight-yellow'; break;
-                                    case 3: highlightClass = 'highlight-white'; break;
-                                    case 4: highlightClass = 'highlight-brown'; break;
-                                }
-                                if (highlightClass) {
-                                    mainPainting.classList.add(highlightClass);
-                                }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                position: 'bottom', 
-                                labels: {
-                                    boxWidth: 20,
-                                    padding: 15
-                                }
-                            }
-                        }
-                    }
-                });
-                
-                ctxColor.addEventListener('mouseout', () => {
-                     resetHighlights();
-                });
-            }
-
-            // --- 차트 2: 감정 게이지 ---
-            const moodScore = 2;
-            const maxScore = 10;
-
-            const gaugeData = {
-                labels: ['기분', '남음'], 
-                datasets: [{
-                    data: [moodScore, maxScore - moodScore], 
-                    backgroundColor: [
-                        '#d9534f', 
-                        '#e0e0e0'  
-                    ],
-                    borderColor: '#fff',
-                    borderWidth: 1
-                }]
-            };
-
-            const ctxGauge = document.getElementById('emotionGaugeChart');
-            if (ctxGauge) {
-                const emotionGaugeChart = new Chart(ctxGauge.getContext('2d'), {
-                    type: 'doughnut',
-                    data: gaugeData,
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        rotation: -90,      
-                        circumference: 180, 
-                        cutout: '70%',      
-                        plugins: {
-                            legend: {
-                                display: false
-                            },
-                            tooltip: {
-                                enabled: false
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    </script>
-
-</body>
-</html>
+                            <p>하늘, 우주, 무한, 영성의 색. 하지만 동시에 요양원에서의 우울함과 고립을 상징하는 "차가운" 색입니다.</
