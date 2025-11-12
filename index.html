@@ -43,6 +43,13 @@
             color: #333;
             font-weight: 600;
         }
+        h4 { /* Thêm H4 cho mục bổ túc */
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
         /* --- 1. 헤더 & 검색 바 --- */
         header {
@@ -77,7 +84,7 @@
             font-family: 'Pretendard', sans-serif; 
         }
 
-        /* --- 2. 그림 갤러리 --- */
+        /* --- 2. 그림 갤러리 (ĐÃ SỬA) --- */
         .painting-gallery {
             display: flex;
             align-items: center;
@@ -92,8 +99,29 @@
             max-width: 85%; 
             height: auto;
             border: 8px solid #fff;
+            /* === YÊU CẦU 1: Thêm transition và default shadow === */
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease; 
+            border-radius: 4px; /* Thêm bo góc nhỏ */
         }
+        /* === YÊU CẦU 1: Các lớp CSS cho hiệu ứng highlight === */
+        .painting-gallery img.highlight-blue {
+            box-shadow: 0 0 35px 15px #0a2e6c;
+        }
+        .painting-gallery img.highlight-yellow {
+            box-shadow: 0 0 35px 15px #f9d700;
+        }
+        .painting-gallery img.highlight-black {
+            box-shadow: 0 0 35px 15px #0c1a2d;
+        }
+        .painting-gallery img.highlight-white {
+            box-shadow: 0 0 35px 15px #ffffff;
+        }
+        .painting-gallery img.highlight-brown {
+            box-shadow: 0 0 35px 15px #b05f2a;
+        }
+        /* ============================================== */
+
         .gallery-arrow {
             position: absolute;
             top: 50%;
@@ -174,13 +202,13 @@
             height: 350px; 
         }
 
-        /* === 2열: 색상 팔레트 (ĐÃ SỬA) === */
+        /* 2열: 색상 팔레트 */
         .palette-container {
             text-align: center;
         }
-        .palette-grid { /* Giữ tên cũ, nhưng thay đổi cấu trúc */
+        .palette-grid { 
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Luôn là 2 cột */
+            grid-template-columns: repeat(2, 1fr); 
             gap: 15px;
             margin-top: 20px;
             padding: 0 20px;
@@ -188,21 +216,19 @@
         }
         .color-swatch {
             text-align: center;
+            cursor: pointer; /* Thêm con trỏ để biết là có tương tác */
         }
-        /* Ô MÀU CHÍNH (nằm đầu) */
         .color-swatch.main-palette {
-            grid-column: 1 / -1; /* === YÊU CẦU 2.1: Ô này chiếm trọn 1 hàng === */
-            margin-bottom: 5px; /* Khoảng cách với 4 ô dưới */
+            grid-column: 1 / -1; 
+            margin-bottom: 5px; 
         }
         .color-swatch.main-palette .swatch-box {
-            height: 80px; /* Ô chính to */
+            height: 80px; 
         }
-        /* 4 Ô MÀU PHỤ */
         .color-swatch.secondary-palette .swatch-box {
-            height: 54px; /* === YÊU CẦU 2.2: Ô phụ cao 2/3 (80px -> 54px) === */
+            height: 54px; 
         }
-        
-        .swatch-box { /* Kiểu chung cho ô màu */
+        .swatch-box { 
             width: 100%;
             border: 1px solid #ddd;
             border-radius: 4px;
@@ -214,7 +240,28 @@
             padding: 2px 4px;
             border-radius: 3px;
         }
-        /* ================================== */
+        
+        /* === YÊU CẦU 2: Mục Màu Bổ túc (MỚI) === */
+        .complementary-contrast {
+            margin-top: 25px; /* Tách biệt với lưới palette */
+            text-align: left;
+            padding: 0 20px;
+        }
+        .complementary-contrast .contrast-swatches {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .complementary-contrast .contrast-swatches .swatch-box {
+            height: 40px; /* Nhỏ hơn ô palette */
+            flex: 1; /* Chia đều không gian */
+        }
+        .complementary-contrast p {
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.5;
+        }
+        /* ============================================== */
 
         /* 3열: 감정 게이지 */
         .emotion-gauge-container {
@@ -465,7 +512,7 @@
             <section class="painting-gallery">
                 <button class="gallery-arrow prev" aria-label="이전 그림" onclick="alert('이전 그림 기능 (미설정)');">‹</button> 
                 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
+                <img id="main-painting-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
                      alt="빈센트 반 고흐의 별이 빛나는 밤"> 
 
                 <button class="gallery-arrow next" aria-label="다음 그림" onclick="alert('다음 그림 기능 (미설정)');">›</button> 
@@ -492,29 +539,38 @@
                 <div class="data-column palette-container">
                     <h2>주요 팔레트</h2> 
                     <div class="palette-grid">
-                        <div class="color-swatch main-palette">
+                        <div id="palette-blue" class="color-swatch main-palette">
                             <div class="swatch-box" style="background-color: #0a2e6c;"></div>
                             <code>#0a2e6c (주요)</code>
                         </div>
 
-                        <div class="color-swatch secondary-palette">
+                        <div id="palette-black" class="color-swatch secondary-palette">
                             <div class="swatch-box" style="background-color: #0c1a2d;"></div>
                             <code>#0c1a2d</code>
                         </div>
-                        <div class="color-swatch secondary-palette">
+                        <div id="palette-yellow" class="color-swatch secondary-palette">
                             <div class="swatch-box" style="background-color: #f9d700;"></div>
                             <code>#f9d700</code>
                         </div>
-                        <div class="color-swatch secondary-palette">
+                        <div id="palette-white" class="color-swatch secondary-palette">
                             <div class="swatch-box" style="background-color: #ffffff; border: 1px solid #eee;"></div>
                             <code>#ffffff</code>
                         </div>
-                         <div class="color-swatch secondary-palette">
+                         <div id="palette-brown" class="color-swatch secondary-palette">
                             <div class="swatch-box" style="background-color: #b05f2a;"></div>
                             <code>#b05f2a</code>
                         </div>
+                    </div>
+                    
+                    <div class="complementary-contrast">
+                        <h4>보색 대비: 감정적 에너지</h4>
+                        <div class="contrast-swatches">
+                            <div class="swatch-box" style="background-color: #f9d700;"></div>
+                            <div class="swatch-box" style="background-color: #0a2e6c;"></div>
                         </div>
-                </div>
+                        <p>반 고흐는 이 두 보색(노랑/파랑)을 의도적으로 사용하여 그림에 시각적 진동과 감정적 긴장감을 불어넣었습니다. 노란색(희망)은 파란색(우울)과 충돌합니다.</p>
+                    </div>
+                    </div>
 
 
                 <div class="data-column emotion-gauge-container">
@@ -679,6 +735,45 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
+            // --- TÍNH NĂNG 1: JavaScript cho Hiệu ứng Hover ---
+            const mainPainting = document.getElementById('main-painting-image');
+
+            // Định nghĩa các cặp ID swatch và lớp highlight
+            const highlightMap = {
+                'palette-blue': 'highlight-blue',
+                'palette-black': 'highlight-black',
+                'palette-yellow': 'highlight-yellow',
+                'palette-white': 'highlight-white',
+                'palette-brown': 'highlight-brown'
+            };
+
+            // Hàm để reset tất cả highlight
+            function resetHighlights() {
+                if (mainPainting) {
+                    mainPainting.className = ''; // Xoá hết các lớp highlight
+                }
+            }
+
+            // Gán event listener cho từng swatch trong PALETTE
+            for (const swatchId in highlightMap) {
+                const swatch = document.getElementById(swatchId);
+                const highlightClass = highlightMap[swatchId];
+                
+                if (swatch && mainPainting) {
+                    swatch.addEventListener('mouseover', () => {
+                        mainPainting.classList.add(highlightClass);
+                    });
+                    
+                    // Reset khi rời khỏi swatch
+                    swatch.addEventListener('mouseout', () => {
+                        resetHighlights();
+                    });
+                }
+            }
+            
+            // --- Kết thúc JavaScript cho Hiệu ứng Hover ---
+
+
             // --- 차트 1: 색상 분포 (도넛) ---
             const colorData = {
                 labels: [ 
@@ -710,7 +805,26 @@
                     data: colorData,
                     options: {
                         responsive: true, 
-                        maintainAspectRatio: false, 
+                        maintainAspectRatio: false,
+                        // === YÊU CẦU 1: Thêm sự kiện onHover cho Donut Chart ===
+                        onHover: (event, chartElement) => {
+                            resetHighlights(); // Reset trước
+                            if (chartElement.length > 0 && mainPainting) {
+                                const index = chartElement[0].index;
+                                let highlightClass = '';
+                                switch(index) {
+                                    case 0: highlightClass = 'highlight-blue'; break;
+                                    case 1: highlightClass = 'highlight-black'; break;
+                                    case 2: highlightClass = 'highlight-yellow'; break;
+                                    case 3: highlightClass = 'highlight-white'; break;
+                                    case 4: highlightClass = 'highlight-brown'; break;
+                                }
+                                if (highlightClass) {
+                                    mainPainting.classList.add(highlightClass);
+                                }
+                            }
+                        },
+                        // =============================================
                         plugins: {
                             legend: {
                                 position: 'bottom', 
@@ -721,6 +835,11 @@
                             }
                         }
                     }
+                });
+                
+                // Reset highlight khi chuột rời khỏi biểu đồ
+                ctxColor.addEventListener('mouseout', () => {
+                     resetHighlights();
                 });
             }
 
