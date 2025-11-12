@@ -43,7 +43,7 @@
             color: #333;
             font-weight: 600;
         }
-        h4 { /* Thêm H4 cho mục bổ túc */
+        h4 { 
             font-size: 1.1em;
             font-weight: 600;
             color: #333;
@@ -84,7 +84,7 @@
             font-family: 'Pretendard', sans-serif; 
         }
 
-        /* --- 2. 그림 갤러리 (ĐÃ SỬA) --- */
+        /* --- 2. 그림 갤러리 --- */
         .painting-gallery {
             display: flex;
             align-items: center;
@@ -99,12 +99,10 @@
             max-width: 85%; 
             height: auto;
             border: 8px solid #fff;
-            /* === YÊU CẦU 1: Thêm transition và default shadow === */
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: box-shadow 0.3s ease; 
-            border-radius: 4px; /* Thêm bo góc nhỏ */
+            border-radius: 4px; 
         }
-        /* === YÊU CẦU 1: Các lớp CSS cho hiệu ứng highlight === */
         .painting-gallery img.highlight-blue {
             box-shadow: 0 0 35px 15px #0a2e6c;
         }
@@ -120,8 +118,6 @@
         .painting-gallery img.highlight-brown {
             box-shadow: 0 0 35px 15px #b05f2a;
         }
-        /* ============================================== */
-
         .gallery-arrow {
             position: absolute;
             top: 50%;
@@ -147,10 +143,10 @@
             right: 15px;
         }
 
-        /* --- 3. 그림 정보 --- */
+        /* --- 3. 그림 정보 (ĐÃ SỬA) --- */
         .painting-info {
             text-align: center;
-            font-size: 1.1em;
+            font-size: 1.1em; /* Giữ base size cho h1 */
             font-style: italic;
             color: #555;
             margin: 20px 0;
@@ -161,15 +157,20 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 180px; 
+            /* === YÊU CẦU 1.2: Chiều cao 3/4 (180px -> 135px) === */
+            min-height: 135px; 
             box-sizing: border-box;
         }
         .painting-info h1 {
             margin-top: 0;
             margin-bottom: 15px; 
+            font-style: normal; /* Tên tranh không cần nghiêng */
         }
+        /* === YÊU CẦU 1.1: Font chữ 2/3 === */
         .painting-info p {
             margin: 0;
+            font-size: 0.75em; /* 1.1em * 2/3 = 0.73 -> 0.75em */
+            line-height: 1.5; /* Giãn dòng cho dễ đọc */
         }
 
         /* --- 4. 데이터 분석 그리드 (3단) --- */
@@ -191,7 +192,6 @@
             box-sizing: border-box; 
         }
         
-        /* 3단 그리드 제목 중앙 정렬 */
         .data-column h2 {
             text-align: center;
         }
@@ -202,31 +202,34 @@
             height: 350px; 
         }
 
-        /* 2열: 색상 팔레트 */
+        /* 2열: 색상 팔레트 (ĐÃ SỬA) */
         .palette-container {
             text-align: center;
         }
         .palette-grid { 
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
-            gap: 15px;
+            /* === YÊU CẦU 2.2: Giảm gap (15px -> 10px) === */
+            gap: 10px; 
             margin-top: 20px;
             padding: 0 20px;
             box-sizing: border-box;
         }
         .color-swatch {
             text-align: center;
-            cursor: pointer; /* Thêm con trỏ để biết là có tương tác */
+            cursor: pointer; 
         }
         .color-swatch.main-palette {
             grid-column: 1 / -1; 
-            margin-bottom: 5px; 
+            margin-bottom: 0px; /* Bỏ margin-bottom, dùng gap */
         }
+        /* === YÊU CẦU 2.1: Chiều cao 3/4 (80px -> 60px) === */
         .color-swatch.main-palette .swatch-box {
-            height: 80px; 
+            height: 60px; 
         }
+        /* === YÊU CẦU 2.1: Chiều cao 3/4 (54px -> 41px) === */
         .color-swatch.secondary-palette .swatch-box {
-            height: 54px; 
+            height: 41px; 
         }
         .swatch-box { 
             width: 100%;
@@ -241,25 +244,38 @@
             border-radius: 3px;
         }
         
-        /* === YÊU CẦU 2: Mục Màu Bổ túc (MỚI) === */
+        /* Mục Màu Bổ túc (ĐÃ SỬA) */
         .complementary-contrast {
-            margin-top: 25px; /* Tách biệt với lưới palette */
+            /* === YÊU CẦU 2.3: Giảm margin (25px -> 20px) === */
+            margin-top: 20px; 
             text-align: left;
             padding: 0 20px;
+        }
+        /* === YÊU CẦU 2.3: Chữ nhỏ lại (1.1em -> 1.0em) === */
+        .complementary-contrast h4 {
+            font-size: 1.0em;
+            font-weight: 600;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 8px; /* Giảm (10px -> 8px) */
+            text-align: center;
         }
         .complementary-contrast .contrast-swatches {
             display: flex;
             gap: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* Giảm (10px -> 8px) */
         }
+        /* === YÊU CẦU 2.3: Ô màu nhỏ lại (40px -> 30px) === */
         .complementary-contrast .contrast-swatches .swatch-box {
-            height: 40px; /* Nhỏ hơn ô palette */
-            flex: 1; /* Chia đều không gian */
+            height: 30px; 
+            flex: 1; 
         }
+        /* === YÊU CẦU 2.3: Chữ nhỏ lại (0.9em -> 0.85em) === */
         .complementary-contrast p {
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: #555;
-            line-height: 1.5;
+            line-height: 1.4; /* Giảm line-height */
+            margin: 0; /* Xoá margin */
         }
         /* ============================================== */
 
@@ -568,9 +584,10 @@
                             <div class="swatch-box" style="background-color: #f9d700;"></div>
                             <div class="swatch-box" style="background-color: #0a2e6c;"></div>
                         </div>
-                        <p>반 고흐는 이 두 보색(노랑/파랑)을 의도적으로 사용하여 그림에 시각적 진동과 감정적 긴장감을 불어넣었습니다. 노란색(희망)은 파란색(우울)과 충돌합니다.</p>
+                        <p>반 고흐는 이 두 보색(노랑/파랑)을 의도적으로 사용하여 그림에 시각적 진동과 감정적 긴장감을 불어넣었습니다.</p>
                     </div>
-                    </div>
+                    
+                </div>
 
 
                 <div class="data-column emotion-gauge-container">
@@ -806,9 +823,8 @@
                     options: {
                         responsive: true, 
                         maintainAspectRatio: false,
-                        // === YÊU CẦU 1: Thêm sự kiện onHover cho Donut Chart ===
                         onHover: (event, chartElement) => {
-                            resetHighlights(); // Reset trước
+                            resetHighlights(); 
                             if (chartElement.length > 0 && mainPainting) {
                                 const index = chartElement[0].index;
                                 let highlightClass = '';
@@ -824,7 +840,6 @@
                                 }
                             }
                         },
-                        // =============================================
                         plugins: {
                             legend: {
                                 position: 'bottom', 
@@ -837,7 +852,6 @@
                     }
                 });
                 
-                // Reset highlight khi chuột rời khỏi biểu đồ
                 ctxColor.addEventListener('mouseout', () => {
                      resetHighlights();
                 });
