@@ -324,25 +324,25 @@
         }
 
         /* Emoji (ĐÃ SỬA) */
-        .gauge-emoji {
+     .gauge-emoji {
             font-size: 60px;    
             line-height: 1;
-            margin-bottom: 0; /* Đảm bảo không có margin mặc định */
-            position: absolute; /* Đặt vị trí tuyệt đối */
-            top: 50%; /* Đẩy xuống 50% từ trên xuống */
-            left: 50%; /* Đẩy sang 50% từ trái sang */
-            transform: translate(-50%, -50%); /* Dịch chuyển ngược lại 50% kích thước của chính nó để căn chính giữa */
-            z-index: 10; /* Đảm bảo emoji nằm trên biểu đồ */
+            margin-bottom: 0; 
+            position: absolute; 
+            top: calc(50% + 15px); /* Hạ xuống 15px */
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            z-index: 10; 
         }
         
        /* Điểm số (nếu bạn muốn giữ lại) */
-        .gauge-score {
+     .gauge-score {
             font-size: 3.2em;    
             font-weight: bold;
             color: #d9534f;    
             line-height: 1;    
-            position: absolute; /* Đặt vị trí tuyệt đối */
-            top: 65%; /* Điều chỉnh vị trí để nó nằm dưới emoji một chút */
+            position: absolute; 
+            top: calc(65% + 15px); /* Hạ xuống 15px */
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
