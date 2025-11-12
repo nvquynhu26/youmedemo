@@ -302,38 +302,60 @@
             margin-top: 5px;
             margin-bottom: 5px;
         }
-
-        /* Đồng hồ */
+/* Đồng hồ */
         .gauge-chart-wrapper {
-            position: relative;
+            position: relative; /* RẤT QUAN TRỌNG: Để định vị tuyệt đối cho emoji */
             width: 85%; 
             max-width: 250px; 
-            margin-bottom: -20px; 
+            margin-bottom: 0px; /* Đảm bảo không có margin thêm */
         }
         
-        /* Emoji */
-        .gauge-emoji {
-            font-size: 60px; 
-            line-height: 1;
-            margin-bottom: 5px; 
-        }
-
-        /* Điểm số */
-        .gauge-score {
-            font-size: 3.2em; 
-            font-weight: bold;
-            color: #d9534f; 
-            line-height: 1; 
-        }
-
-        /* Nhãn */
-        .gauge-label {
-            margin-top: 2px; 
-            font-size: 1.0em; 
-            color: #555;
-            margin-bottom: 10px; 
+        /* Wrapper mới cho nội dung giữa (Đồng hồ, Emoji, Điểm) */
+        .gauge-center-content {
+            flex-grow: 1;    
+            display: flex;
+            flex-direction: column; /* Giữ lại flex-direction: column nếu bạn có các mục khác */
+            justify-content: center;    
+            align-items: center;
             text-align: center;
-            flex-shrink: 0; 
+            margin-top: 5px;
+            margin-bottom: 5px;
+            position: relative; /* Thêm cái này để emoji có thể căn giữa trong wrapper */
+        }
+
+        /* Emoji (ĐÃ SỬA) */
+        .gauge-emoji {
+            font-size: 60px;    
+            line-height: 1;
+            margin-bottom: 0; /* Đảm bảo không có margin mặc định */
+            position: absolute; /* Đặt vị trí tuyệt đối */
+            top: 50%; /* Đẩy xuống 50% từ trên xuống */
+            left: 50%; /* Đẩy sang 50% từ trái sang */
+            transform: translate(-50%, -50%); /* Dịch chuyển ngược lại 50% kích thước của chính nó để căn chính giữa */
+            z-index: 10; /* Đảm bảo emoji nằm trên biểu đồ */
+        }
+
+        /* Điểm số (nếu bạn muốn giữ lại) */
+        .gauge-score {
+            font-size: 3.2em;    
+            font-weight: bold;
+            color: #d9534f;    
+            line-height: 1;    
+            position: absolute; /* Đặt vị trí tuyệt đối */
+            top: 65%; /* Điều chỉnh vị trí để nó nằm dưới emoji một chút */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        /* Nhãn (nếu bạn muốn giữ lại) */
+        .gauge-label {
+            margin-top: 2px;    
+            font-size: 1.0em;    
+            color: #555;
+            margin-bottom: 10px;    
+            text-align: center;
+            flex-shrink: 0;    
         }
         /* ================================== */
 
